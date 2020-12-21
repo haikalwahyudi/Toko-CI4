@@ -73,7 +73,7 @@
             </ul>
         
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('admin/kategori'); ?>" class="nav-link">
             <i class="nav-icon fas fa-braille"></i>
                 <p>
                 Kategori
