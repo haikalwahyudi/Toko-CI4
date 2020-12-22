@@ -63,7 +63,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('/admin/pelanggan'); ?>" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
                 <p>
                 Pelanggan
@@ -73,7 +73,7 @@
             </ul>
         
         <li class="nav-item">
-            <a href="<?= base_url('admin/kategori'); ?>" class="nav-link">
+            <a href="<?= base_url('/admin/kategori'); ?>" class="nav-link">
             <i class="nav-icon fas fa-braille"></i>
                 <p>
                 Kategori
@@ -81,7 +81,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="<?= base_url('/admin/ongkir'); ?>" class="nav-link">
             <i class="nav-icon fas fa-money-bill-wave"></i>
                 <p>
                 Ongkir
