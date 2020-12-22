@@ -17,25 +17,25 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="<?= base_url() ?>/template/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
+<script src="<?= base_url() ?>/template/plugins/sparklines/sparkline.js"></script>
 <!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="<?= base_url() ?>/template/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?= base_url() ?>/template/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 <!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="<?= base_url() ?>/template/plugins/jquery-knob/jquery.knob.min.js"></script>
 <!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?= base_url() ?>/template/plugins/moment/moment.min.js"></script>
+<script src="<?= base_url() ?>/template/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="<?= base_url() ?>/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<script src="<?= base_url() ?>/template/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="<?= base_url() ?>/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+<script src="<?= base_url() ?>/template/dist/js/pages/dashboard.js"></script>
 <!-- jQuery -->
 <script src="<?= base_url() ?>/template/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -47,8 +47,9 @@
 <script src="<?= base_url() ?>/template/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url() ?>/template/dist/js/demo.js"></script>
+<!-- Summernote -->
+<script src="<?= base_url() ?>/template/plugins/summernote/summernote-bs4.min.js"></script>
 
-<!-- page script -->
 <script>
   $(function () {
     $("#example1").DataTable();
@@ -61,6 +62,11 @@
       "autoWidth": false,
     });
   });
+
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
 </script>
 
 </body>

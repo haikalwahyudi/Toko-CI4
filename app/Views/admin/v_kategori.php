@@ -19,9 +19,9 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="card"">
+        <div class="card">
             <div class="card-header">
-                <a href="#" class=" btn btn-outline-primary"><i class="fa fa-plus"></i> Tambah</a>
+                <a href="<?= base_url('admin/tambahKategori') ?>" class=" btn btn-outline-primary"><i class="fa fa-plus"></i> Tambah</a>
             </div>
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">

@@ -19,10 +19,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="card"">
-            <div class="card-header">
-                <a href="#" class=" btn btn-outline-primary"><i class="fa fa-plus"></i> Tambah</a>
-            </div>
+        <div class="card">
             <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -43,9 +40,8 @@
                     <td>Win 95+</td>
                     <td>Win 95+</td>
                     <td>
-                    <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a> ||
                     <a href="#" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
-                </td>
+                    </td>
                 </tr>
                 </tbody>
                 </table>
