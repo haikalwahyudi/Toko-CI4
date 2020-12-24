@@ -46,6 +46,15 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a href="<?= base_url('/admin/pembelian'); ?>" class="nav-link">
+            <i class="nav-icon fas fa-shopping-cart"></i>
+                <p>
+                Pembelian
+                </p>
+            </a>
+        </li>
+
         <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <p>

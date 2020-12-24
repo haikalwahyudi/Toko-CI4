@@ -41,8 +41,8 @@
                     <td>Win 95+</td>
                     <td>Win 95+</td>
                     <td>
-                    <a href="#" class="btn btn-warning"><i class="fa fa-edit"></i></a> ||
-                    <a href="#" class="btn btn-danger"><i class="fa fa-trash-alt"></i></a>
+                    <a href="<?= base_url('admin/ubahOngkir'); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></a>
                 </td>
                 </tr>
                 </tbody>
