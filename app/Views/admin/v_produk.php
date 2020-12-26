@@ -24,6 +24,15 @@
                 <a href="<?= base_url('/admin/tambahProduk'); ?>" class=" btn btn-outline-primary"><i class="fa fa-plus"></i> Tambah</a>
             </div>
             <div class="card-body">
+            <?php if(session()->getFlashdata('hapus')){ ?>
+              <div class="alert bg-danger">
+                <?= session()->getFlashdata('hapus'); ?>
+              </div>
+            <?php }else if(session()->getFlashdata('ubah')){?>
+              <div class="alert bg-success">
+                <?= session()->getFlashdata('ubah'); ?>
+              </div>
+            <?php } ?>
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -36,18 +45,25 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php 
+                $no = 1;
+                  foreach($data as $produk) :
+                ?>
                 <tr>
-                    <td>Internet</td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td>Trident</td>
-                    <td>Internet</td>
+                    <td class="penomeran"><?= $no++; ?></td>
+                    <td width="330px"><?= $produk['nama_produk']; ?></td>
+                    <td>Rp. <?= number_format($produk['harga_beli']); ?></td>
+                    <td>Rp. <?= number_format($produk['harga_jual']); ?></td>
+                    <td class="tengah"><img src="<?= base_url('img/'.$produk['foto_produk']); ?>" alt="<?= $produk['foto_produk']; ?>" class="gambar"></td>
                     <td>
-                    <a href="#" class="btn btn-primary btn-sm">Detail</a>
-                    <a href="<?= base_url('admin/editProduk'); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></a>
+                    <a href="<?= base_url('admin/detail/'.$produk['id_produk']); ?>" class="btn btn-primary btn-sm">Detail</a>
+                    <a href="<?= base_url('admin/editProduk/'.$produk['id_produk']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="<?= base_url('admin/hapus/'.$produk['id_produk']); ?>" class="btn btn-danger btn-sm"
+                    onclick="return confirm('Pemberitahuan, \nData yang dihapus tidak bisa dikemblikan')"><i class="fa fa-trash-alt"></i></a>
                 </td>
                 </tr>
+                <?php endforeach; ?>
+                
                 </tbody>
                 </table>
             </div>

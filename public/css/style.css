@@ -1,0 +1,22 @@
+.gambar{
+    width: 50px;
+}
+.tengah{
+    text-align: center;
+}
+.table > tbody > tr > td{
+    vertical-align: middle;
+}
+.penomeran{
+    width: 20px;
+    text-align: center;
+}
+.tdetail{
+    width: 100px;
+}
+.table > tbody > tr > #titik{
+    width: 20px;
+}
+.table > tbody > tr > #deskripsi{
+    text-align: justify;
+}

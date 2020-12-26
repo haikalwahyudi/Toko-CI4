@@ -28,34 +28,36 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('admin/editProdukAksi'); ?>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id_produk" value="<?= $getProduk->id_produk; ?>">
+                        <input type="hidden" name="gambarLama" value="<?= $getProduk->foto_produk; ?>">
                             <div class="form-group">
                                 <label for="Nama Produk">Nama Produk</label>
-                                <input type="text" name="namaProduk" class="form-control">
+                                <input type="text" name="namaProduk" class="form-control" value="<?= $getProduk->nama_produk; ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="Id Kategori">Kategori</label>
                                 <select class="form-control" aria-label="Default select example" name="id_kategori">
                                     <option value="">-- Pilih Kategori --</option>
-                                    <option value="">Baju</option>
-                                    <option value="">Elektronik</option>
+                                    <option value="1" <?php if($getProduk->id_kategori == "1"){echo "selected";} ?>>1</option>
+                                    <option value="2" <?php if($getProduk->id_kategori == "2"){echo "selected";} ?>>2</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="Harga Beli">Harga Beli</label>
-                                <input type="number" name="harga_beli" class="form-control">
+                                <input type="number" name="harga_beli" class="form-control" value="<?= $getProduk->harga_beli; ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="Harga Jual">Harga Jual</label>
-                                <input type="number" name="harga_jual" class="form-control">
+                                <input type="number" name="harga_jual" class="form-control" value="<?= $getProduk->harga_jual; ?>" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="Berat">Berat</label>
-                                <input type="text" name="berat" class="form-control">
+                                <input type="text" name="berat" class="form-control" value="<?= $getProduk->berat; ?>" required>
                             </div>
 
                             <div class="form-group">
@@ -65,14 +67,14 @@
 
                             <div class="form-group">
                                 <label for="Deskripsi">Deskripsi</label>
-                                <textarea class="textarea" placeholder="Place some text here"
-                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <textarea class="textarea" name="deskripsi" placeholder="Place some text here"
+                                style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"><?= $getProduk->deskripsi; ?></textarea>
                             </div>
                             
+                            <div class="card-footer">
+                                <button type="submit" name="simpan" class="btn btn-primary">Simpan Perubahan</button>
+                            </div>
                         </form>
-                        <div class="card-footer">
-                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                        </div>
                     </div>
                 </div>
             </div>

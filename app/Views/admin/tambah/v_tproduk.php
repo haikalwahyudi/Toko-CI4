@@ -26,53 +26,88 @@
                 Form Pengisian Data Produk
             </div>
             <div class="card-body">
+            <?php if(session()->getFlashdata('berhasil')){ ?>
+            <div class="alert alert-success" role="alert">
+            <?= session()->getFlashdata('berhasil') ?>
+            </div>
+            <?php } ?>
                 <div class="row">
                     <div class="col">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('/admin/simpanProduk'); ?>" method="post" enctype="multipart/form-data">
+                        <?= csrf_field(); ?>
                             <div class="form-group">
                                 <label for="Nama Produk">Nama Produk</label>
-                                <input type="text" name="namaProduk" class="form-control">
+                                <input type="text" name="namaProduk" class="form-control
+                                <?= ($validation->hasError('namaProduk')) ? 'is-invalid' : ''; ?>" autofocus value="<?= old('namaProduk'); ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('namaProduk'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Id Kategori">Kategori</label>
-                                <select class="form-control" aria-label="Default select example" name="id_kategori">
+                                <select class="form-control <?= ($validation->hasError('id_kategori')) ? 'is-invalid' : ''; ?>" aria-label="Default select example" name="id_kategori">
                                     <option value="">-- Pilih Kategori --</option>
-                                    <option value="">Baju</option>
-                                    <option value="">Elektronik</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
                                 </select>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('id_kategori'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Harga Beli">Harga Beli</label>
-                                <input type="number" name="harga_beli" class="form-control">
+                                <input type="number" name="harga_beli" class="form-control
+                                <?= ($validation->hasError('harga_beli')) ? 'is-invalid' : ''; ?>" value="<?= old('harga_beli'); ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('harga_beli'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Harga Jual">Harga Jual</label>
-                                <input type="number" name="harga_jual" class="form-control">
+                                <input type="number" name="harga_jual" class="form-control
+                                <?= ($validation->hasError('harga_jual')) ? 'is-invalid' : ''; ?>" value="<?= old('harga_jual'); ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('harga_jual'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Berat">Berat</label>
-                                <input type="text" name="berat" class="form-control">
+                                <input type="text" name="berat" class="form-control
+                                <?= ($validation->hasError('berat')) ? 'is-invalid' : ''; ?>" value="<?= old('berat'); ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('berat'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="Gambar">Gambar</label><br>
-                                <input type="file" name="gambar">
+                                <label for="customFile">Gambar</label>
+
+                                <div class="custom-file">
+                                <input type="file" name="gambar" class="custom-file-input <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="text-sm text-red">
+                                    <?= $validation->getError('gambar'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Deskripsi">Deskripsi</label>
-                                <textarea class="textarea" placeholder="Place some text here"
+                                <textarea class="textarea <?= ($validation->hasError('deskripsi')) ? 'is-invalid' : ''; ?>" name="deskripsi" placeholder="Place some text here"
                                 style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('deskripsi'); ?>
+                                </div>
                             </div>
                             
+                            <div class="card-footer">
+                                <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                            </div>
                         </form>
-                        <div class="card-footer">
-                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                        </div>
                     </div>
                 </div>
             </div>

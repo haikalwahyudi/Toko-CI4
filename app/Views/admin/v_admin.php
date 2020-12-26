@@ -36,7 +36,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Trident</td>
+                    <td>1</td>
                     <td>Internet</td>
                     <td>Win 95+</td>
                     <td>Win 95+</td>

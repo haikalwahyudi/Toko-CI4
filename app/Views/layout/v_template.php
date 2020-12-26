@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url() ?>/template/dist/css/adminlte.min.css">
+  <!-- css -->
+  <link rel="stylesheet" href="<?= base_url(); ?>/css/style.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
