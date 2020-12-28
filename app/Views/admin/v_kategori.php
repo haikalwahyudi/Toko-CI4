@@ -24,25 +24,37 @@
                 <a href="<?= base_url('admin/tambahKategori') ?>" class=" btn btn-outline-primary"><i class="fa fa-plus"></i> Tambah</a>
             </div>
             <div class="card-body">
+            <?php if(session()->getFlashdata('sukses')){?>
+              <div class="alert alert-success">
+                <?= session()->getFlashdata('sukses'); ?>
+              </div>
+            <?php }else if(session()->getFlashdata('hapus')){ ?>
+              <div class="alert alert-danger">
+                <?= session()->getFlashdata('hapus'); ?>
+              </div>
+            <?php } ?>
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>No</th>
-                  <th>ID Kategori</th>
+                  <th class="penomeran">No</th>
                   <th>Kategori</th>
-                  <th>Aksi</th>
+                  <th class="aksi">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php
+                $no=1;
+                foreach($getKategori as $kategori) :
+                ?>
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet</td>
-                  <td>Win 95+</td>
+                  <td><?= $no++; ?></td>
+                  <td><?= $kategori['kategori']; ?></td>
                   <td>
-                    <a href="<?= base_url('admin/ubahKategori'); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></a>
+                    <a href="<?= base_url('/admin/ubahKategori/'.$kategori['id_kategori']); ?>" class="btn btn-warning btn-sm mt-1 mb-1"><i class="fa fa-edit"></i></a>
+                    <a href="<?= base_url('/admin/hapusKategori/'.$kategori['id_kategori']); ?>" class="btn btn-danger btn-sm" onclick ="return confirm('Yakin ingin menghapus data ini!!\n Data yang sudah dihapus tidak bisa dikembalikan.')"><i class="fa fa-trash-alt"></i></a>
                   </td>
                 </tr>
+                <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

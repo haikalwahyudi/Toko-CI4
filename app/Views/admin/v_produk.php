@@ -41,7 +41,7 @@
                     <th>Harga Beli</th>
                     <th>Harga Jual</th>
                     <th>Foto</th>
-                    <th width="130px">Aksi</th>
+                    <th class="aksi">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>

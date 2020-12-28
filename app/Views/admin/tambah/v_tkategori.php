@@ -28,16 +28,20 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('admin/tambahKategoriAksi'); ?>" method="post">
                             <div class="form-group">
                                 <label for="Kategori">Kategori</label>
-                                <input type="text" name="kategori" class="form-control">
+                                <input type="text" name="kategori" 
+                                class="form-control <?= ($validate->hasError('kategori') ? 'is-invalid' : ''); ?>" autofocus>
+                                <div class="invalid-feedback">
+                                  <?= $validate->getError('kategori'); ?>
+                                </div>
                             </div>
-
-                        </form>
-                        <div class="card-footer">
-                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                        </div>
+                            <div class="card-footer">
+                              <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                              <a href="<?= base_url('/admin/kategori/');?>" class="btn btn-danger">Batal</a>
+                          </div>
+                          </form>
                     </div>
                 </div>
             </div>

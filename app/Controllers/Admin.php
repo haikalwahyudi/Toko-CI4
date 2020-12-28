@@ -3,13 +3,16 @@
 //use CodeIgniter\controller;
 // use App\Models\M_admin;
 use App\Models\M_produk;
+use App\Models\M_kategori;
 
 class Admin extends BaseController
 {
     // Construct
     protected $M_produk;
+    protected $M_kategori;
     public function __construct(){
         $this->M_produk = new M_produk();
+        $this->M_kategori = new M_kategori();
     }
 //===================== Halaman Menu ========================
     public function index()
@@ -255,24 +258,78 @@ class Admin extends BaseController
 
     public function kategori()
     {
-        $data['title'] = 'Kategori';
+        $data = [
+            'title'         => 'Kategori',
+            'getKategori'   => $this->M_kategori->ambilData()
+        ];
         return view('admin/v_kategori', $data);
     }
 
     public function tambahKategori()
     {
         $data = [
-            'title' => 'Tambah Data Kategori'
+            'title'     => 'Tambah Data Kategori',
+            'validate'  => \Config\Services::validation()
         ];
         return view('admin/tambah/v_tkategori', $data);
     }
 
-    public function ubahKategori()
+    public function tambahKategoriAksi()
+    {
+        if(!$this->validate([
+            'kategori'      => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => 'Kategori harus diisi.'
+                ]
+            ]
+        ])){
+            return redirect()->to('/admin/tambahKategori')->withInput();
+        }
+
+        $this->M_kategori->simpan([
+            'kategori'  => $this->request->getVar('kategori')
+        ]);
+        session()->setFlashdata('sukses','Data Berhasil Ditambah');
+        return redirect()->to('/admin/kategori');
+    }
+
+    public function ubahKategori($id_kategori)
     {
         $data = [
-            'title' => 'Ubah Data Kategori'
+            'title'         => 'Ubah Data Kategori',
+            'kategori'      => $this->M_kategori->ambilData($id_kategori)->getRow(),
+            'validation'    => \config\services::validation()
         ];
         return view('admin/ubah/v_ekategori', $data);
+    }
+
+    public function ubahKategoriAksi()
+    {
+        if(!$this->validate([
+            'kategori'      => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => 'Kategori harus diisi.'
+                ]
+            ]
+        ])){
+            return redirect()->to('/admin/ubahkategori/'. $this->request->getVar('id_kategori'))->withInput();
+        }
+
+        $id_kategori = $this->request->getVar('id_kategori');
+        $this->M_kategori->ubah([
+            'kategori'  => $this->request->getVar('kategori')
+        ], $id_kategori);
+        session()->setFlashdata('sukses','Data berhasil diubah');
+        return redirect()->to('/admin/kategori');
+    }
+
+    public function hapusKategori($id_kategori)
+    {
+        $this->M_kategori->hapus($id_kategori);
+        session()->setFlashdata('hapus','Data berhasil dihapus');
+        return redirect()->to('/admin/kategori');
     }
     
     public function ongkir()

@@ -106,6 +106,7 @@
                             
                             <div class="card-footer">
                                 <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                                <a href="<?= base_url('admin/produk'); ?>" class="btn btn-danger">Batal</a>
                             </div>
                         </form>
                     </div>
