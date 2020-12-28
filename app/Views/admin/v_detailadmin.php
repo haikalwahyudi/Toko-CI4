@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-12 col-sm-6">
             <div class="col-12">
-                <img src="<?= base_url('img/'.$detail->foto_produk) ?>" class="product-image" alt="Product Image">
+                <img src="<?= base_url('img/'.$detail->foto_produk) ?>" class="product-image image" alt="Product Image">
                 <a href="<?= base_url('admin/produk') ?>" class="btn btn-primary btn-sm mt-3"><i class="fa fa-arrow-left"></i> Kembali</a>
             </div>
             </div>

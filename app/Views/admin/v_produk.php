@@ -41,7 +41,7 @@
                     <th>Harga Beli</th>
                     <th>Harga Jual</th>
                     <th>Foto</th>
-                    <th>Aksi</th>
+                    <th width="130px">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,7 +57,7 @@
                     <td class="tengah"><img src="<?= base_url('img/'.$produk['foto_produk']); ?>" alt="<?= $produk['foto_produk']; ?>" class="gambar"></td>
                     <td>
                     <a href="<?= base_url('admin/detail/'.$produk['id_produk']); ?>" class="btn btn-primary btn-sm">Detail</a>
-                    <a href="<?= base_url('admin/editProduk/'.$produk['id_produk']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="<?= base_url('admin/editProduk/'.$produk['id_produk']); ?>" class="btn btn-warning btn-sm mt-1 mb-1"><i class="fa fa-edit"></i></a>
                     <a href="<?= base_url('admin/hapus/'.$produk['id_produk']); ?>" class="btn btn-danger btn-sm"
                     onclick="return confirm('Pemberitahuan, \nData yang dihapus tidak bisa dikemblikan')"><i class="fa fa-trash-alt"></i></a>
                 </td>

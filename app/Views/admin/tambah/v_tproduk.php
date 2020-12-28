@@ -21,7 +21,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="card mx-auto" style="width: 47rem;">
+        <div class="card mx-auto" style="width: 70%;">
             <div class="card-header text-center">
                 Form Pengisian Data Produk
             </div>
@@ -56,19 +56,19 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="Harga Beli">Harga Beli</label>
-                                <input type="number" name="harga_beli" class="form-control
-                                <?= ($validation->hasError('harga_beli')) ? 'is-invalid' : ''; ?>" value="<?= old('harga_beli'); ?>">
+                            <label for="Harga Beli">Harga Beli</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon1">Rp.</span>
+                                <input type="text" class="form-control <?= ($validation->hasError('berat')) ? 'is-invalid' : ''; ?>"" name="harga_beli" aria-describedby="basic-addon1">
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     <?= $validation->getError('harga_beli'); ?>
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="Harga Jual">Harga Jual</label>
-                                <input type="number" name="harga_jual" class="form-control
-                                <?= ($validation->hasError('harga_jual')) ? 'is-invalid' : ''; ?>" value="<?= old('harga_jual'); ?>">
+                            <label for="Harga Jual">Harga Jual</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">Rp.</span>
+                                <input type="text" class="form-control <?= ($validation->hasError('berat')) ? 'is-invalid' : ''; ?>"" name="harga_jual" aria-describedby="basic-addon1">
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     <?= $validation->getError('harga_jual'); ?>
                                 </div>

@@ -138,13 +138,51 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Ubah Data Produk',
-            // 'validation' => \Config\Services::validation(),
-            'getProduk' => $this->M_produk->ambilData($id_produk)->getRow()
+            'getProduk' => $this->M_produk->ambilData($id_produk)->getRow(),
+            'validation' => \Config\Services::validation()
         ];
+        
         return view('admin/ubah/v_eproduk',$data);
     }
     public function editProdukAksi()
     {
+        if(!$this->validate([
+            'namaProduk'    => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required' => 'Nama produk harus diisi'
+                ]
+                ],
+            'harga_beli'    => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required' => 'Harga beli harus diisi'
+                ]
+                ],
+            'harga_jual'    => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required' => 'Harga Jual Harus diisi.'
+                ]
+            ],
+            'berat'         => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required' => 'Berat Harus diisi.'
+                ]
+            ],
+            'gambar'        => [
+                'rules'     => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]',
+                'errors'    => [
+                    'max_size'  => 'Ukuran gambar terlalu besar, max 1MB.',
+                    'is_image'   => 'Yang anda pilih bukan gambar.',
+                    'mime_in'  => 'Fromat gambar harus jpg,jpeg, atau png.',
+                ]
+            ]
+        ])){
+            return redirect()->to('/admin/editProduk/'.$this->request->getVar('id_produk'))->withInput();
+        }
+
         $id = $this->request->getvar('id_produk');
         $cariId = $this->M_produk->ambilData($id)->getRow();
 
@@ -161,7 +199,7 @@ class Admin extends BaseController
             }
         }
 
-        $id_produk = $this->request->getVar('id_produk');
+        $id_produk = $this->request->getPost('id_produk');
         $this->M_produk->ubah([
             'nama_produk' => $this->request->getVar('namaProduk'),
             'id_kategori' => $this->request->getVar('id_kategori'),

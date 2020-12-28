@@ -21,48 +21,74 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="card mx-auto" style="width: 47rem;">
+        <div class="card mx-auto" style="width: 70%;">
             <div class="card-header text-center">
                 Form Ubah Data Produk
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <form action="<?= base_url('admin/editProdukAksi'); ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('admin/editProdukAksi'); ?>/<?= $getProduk->id_produk; ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="id_produk" value="<?= $getProduk->id_produk; ?>">
                         <input type="hidden" name="gambarLama" value="<?= $getProduk->foto_produk; ?>">
                             <div class="form-group">
                                 <label for="Nama Produk">Nama Produk</label>
-                                <input type="text" name="namaProduk" class="form-control" value="<?= $getProduk->nama_produk; ?>" required>
+                                <input type="text" name="namaProduk" class="form-control <?= ($validation->hasError('namaProduk') ? 'is-invalid' : ''); ?>" value="<?= $getProduk->nama_produk; ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('namaProduk'); ?>
+                                </div>
                             </div>
-
+                            
                             <div class="form-group">
                                 <label for="Id Kategori">Kategori</label>
-                                <select class="form-control" aria-label="Default select example" name="id_kategori">
+                                <select class="form-control <?= ($validation->hasError('id_kategori')) ? 'is-invalid' : ''; ?>" aria-label="Default select example" name="id_kategori">
                                     <option value="">-- Pilih Kategori --</option>
                                     <option value="1" <?php if($getProduk->id_kategori == "1"){echo "selected";} ?>>1</option>
                                     <option value="2" <?php if($getProduk->id_kategori == "2"){echo "selected";} ?>>2</option>
                                 </select>
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('id_kategori'); ?>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="Harga Beli">Harga Beli</label>
-                                <input type="number" name="harga_beli" class="form-control" value="<?= $getProduk->harga_beli; ?>" required>
+                            <label for="Harga Beli">Harga Beli</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon1">Rp.</span>
+                                <input type="text" class="form-control <?= ($validation->hasError('harga_beli')) ? 'is-invalid' : ''; ?>" 
+                                name="harga_beli" aria-describedby="basic-addon1" value="<?= $getProduk->harga_beli; ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('harga_beli'); ?>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="Harga Jual">Harga Jual</label>
-                                <input type="number" name="harga_jual" class="form-control" value="<?= $getProduk->harga_jual; ?>" required>
+                            <label for="Harga Jual">Harga Jual</label>
+                            <div class="input-group">
+                                <span class="input-group-text" id="basic-addon1">Rp.</span>
+                                <input type="text" class="form-control <?= ($validation->hasError('harga_jual')) ? 'is-invalid' : ''; ?>"
+                                name="harga_jual" aria-describedby="basic-addon1" value="<?= $getProduk->harga_jual; ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('harga_jual'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Berat">Berat</label>
-                                <input type="text" name="berat" class="form-control" value="<?= $getProduk->berat; ?>" required>
+                                <input type="text" name="berat" class="form-control <?= ($validation->hasError('berat') ? 'is-invalid' : ''); ?>" value="<?= $getProduk->berat; ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    <?= $validation->getError('berat'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="Gambar">Gambar</label><br>
-                                <input type="file" name="gambar">
+                                <label for="customFile">Gambar</label>
+
+                                <div class="custom-file">
+                                <input type="file" name="gambar" class="custom-file-input <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                                <div class="text-sm text-red">
+                                    <?= $validation->getError('gambar'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">

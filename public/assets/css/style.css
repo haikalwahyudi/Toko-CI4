@@ -20,3 +20,6 @@
 .table > tbody > tr > #deskripsi{
     text-align: justify;
 }
+.image{
+    border-radius: 15px;
+}

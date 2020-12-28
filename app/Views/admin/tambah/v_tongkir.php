@@ -21,7 +21,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="card mx-auto" style="width: 47rem;">
+        <div class="card mx-auto" style="width: 70%;">
             <div class="card-header text-center">
                 Form Pengisian Data Ongkir
             </div>
