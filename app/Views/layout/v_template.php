@@ -14,7 +14,7 @@
   <!-- JQVMap -->
   <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?= base_url() ?>/template/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/template/assets/css/adminlte.min.css">
   <!-- css -->
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/style.css">
   <!-- overlayScrollbars -->
@@ -31,7 +31,7 @@
   <!-- overlayScrollbars -->
   <!-- Data Table -->
   <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="<?= base_url() ?>/template/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= base_url() ?>/template/assets/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>

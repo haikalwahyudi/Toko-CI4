@@ -35,7 +35,7 @@
 <!-- overlayScrollbars -->
 <script src="<?= base_url() ?>/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= base_url() ?>/template/dist/js/pages/dashboard.js"></script>
+<script src="<?= base_url() ?>/template/assets/js/pages/dashboard.js"></script>
 <!-- jQuery -->
 <script src="<?= base_url() ?>/template/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -44,9 +44,9 @@
 <script src="<?= base_url() ?>/template/plugins/datatables/jquery.dataTables.js"></script>
 <script src="<?= base_url() ?>/template/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
 <!-- AdminLTE App -->
-<script src="<?= base_url() ?>/template/dist/js/adminlte.min.js"></script>
+<script src="<?= base_url() ?>/template/assets/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?= base_url() ?>/template/dist/js/demo.js"></script>
+<script src="<?= base_url() ?>/template/assets/js/demo.js"></script>
 <!-- Summernote -->
 <script src="<?= base_url() ?>/template/plugins/summernote/summernote-bs4.min.js"></script>
 
