@@ -59,7 +59,7 @@
                             <label for="Harga Beli">Harga Beli</label>
                             <div class="input-group mb-2">
                                 <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                <input type="text" class="form-control <?= ($validation->hasError('berat')) ? 'is-invalid' : ''; ?>"" name="harga_beli" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control <?= ($validation->hasError('berat')) ? 'is-invalid' : ''; ?>" name="harga_beli" aria-describedby="basic-addon1">
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     <?= $validation->getError('harga_beli'); ?>
                                 </div>
@@ -68,7 +68,7 @@
                             <label for="Harga Jual">Harga Jual</label>
                             <div class="input-group">
                                 <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                <input type="text" class="form-control <?= ($validation->hasError('berat')) ? 'is-invalid' : ''; ?>"" name="harga_jual" aria-describedby="basic-addon1">
+                                <input type="text" class="form-control <?= ($validation->hasError('berat')) ? 'is-invalid' : ''; ?>" name="harga_jual" aria-describedby="basic-addon1">
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     <?= $validation->getError('harga_jual'); ?>
                                 </div>

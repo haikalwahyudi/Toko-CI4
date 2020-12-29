@@ -28,21 +28,30 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('admin/ubahOngkirAksi'); ?>" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id_ongkir" value="<?= $getOngkir->id_ongkir; ?>">
                             <div class="form-group">
                                 <label for="Nama Kota">Nama Kota</label>
-                                <input type="text" name="nama_kota" class="form-control">
+                                <input type="text" name="nama_kota" class="form-control <?= ($validation->hasError('nama_kota') ? 'is-invalid' : ''); ?>" value="<?= $getOngkir->nama_kota; ?>">
+                                <div class="invalid-feedback">
+                                  <?= $validation->getError('nama_kota'); ?>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="Tarif">Tarif</label>
-                                <input type="number" name="tarif" class="form-control">
+                            <label for="Harga Beli">Tarif</label>
+                            <div class="input-group mb-2">
+                                <span class="input-group-text" id="basic-addon1">Rp.</span>
+                                <input type="number" class="form-control <?= ($validation->hasError('tarif') ? 'is-invalid' : ''); ?>" 
+                                name="tarif" aria-describedby="basic-addon1" value="<?= $getOngkir->tarif; ?>">
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                  <?= $validation->getError('tarif'); ?>
+                                </div>
                             </div>
-                            
+                          <div class="card-footer">
+                              <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                              <a href="<?= base_url('/admin/ongkir'); ?>" class="btn btn-danger">Batal</a>
+                          </div>
                         </form>
-                        <div class="card-footer">
-                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                        </div>
                     </div>
                 </div>
             </div>

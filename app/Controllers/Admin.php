@@ -4,15 +4,18 @@
 // use App\Models\M_admin;
 use App\Models\M_produk;
 use App\Models\M_kategori;
+use App\Models\M_ongkir;
 
 class Admin extends BaseController
 {
     // Construct
     protected $M_produk;
     protected $M_kategori;
+    protected $M_ongkir;
     public function __construct(){
         $this->M_produk = new M_produk();
         $this->M_kategori = new M_kategori();
+        $this->M_ongkir = new M_ongkir();
     }
 //===================== Halaman Menu ========================
     public function index()
@@ -334,23 +337,91 @@ class Admin extends BaseController
     
     public function ongkir()
     {
-        $data['title'] = 'Ongkir';
+        $data = [
+            'title'         => 'Ongkir',
+            'getOngkir'     => $this->M_ongkir->ambilData()
+        ];
         return view('admin/v_ongkir', $data);
     }
 
     public function tambahOngkir()
     {
         $data = [
-            'title' => 'Tambah Data Ongkir'
+            'title'         => 'Tambah Data Ongkir',
+            'validation'    => \config\services::validation()
         ];
         return view('admin/tambah/v_tongkir', $data);
     }
 
-    public function ubahOngkir()
+    public function tambahOngkirAksi()
+    {
+        //validasi
+        if(!$this->validate([
+            'nama_kota'     => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => 'Nama Kota harus diisi.'
+                ]
+                ],
+            'tarif'         => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => 'Tarif harus diisi.'
+                ]
+                ]
+        ])){
+            return redirect()->to('/admin/tambahOngkir')->withInput();
+        }
+
+        $this->M_ongkir->simpan([
+            'nama_kota'     => $this->request->getVar('nama_kota'),
+            'tarif'         => $this->request->getVar('tarif')
+        ]);
+        session()->setFlashdata('sukses','Data berhasil disimpan');
+        return redirect()->to('/admin/tambahOngkir');
+    }
+
+    public function ubahOngkir($id_ongkir)
     {
         $data = [
-            'title' => 'Ubah Data Ongkir'
+            'title'         => 'Ubah Data Ongkir',
+            'validation'    => \config\services::validation(),
+            'getOngkir'     => $this->M_ongkir->ambilData($id_ongkir)->getRow()
         ];
         return view('admin/ubah/v_eongkir', $data);
+    }
+
+    public function ubahOngkirAksi()
+    {
+        if(!$this->validate([
+            'nama_kota'     => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'   => "Nama kota harus diisi."
+                ]
+            ],
+            'tarif'     => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'   => "Tarif harus diisi."
+                ]
+            ],
+        ])){
+            return redirect()->to('/admin/ubahOngkir/'.$this->request->getVar('id_ongkir'))->withInput();
+        }
+        $id_ongkir = $this->request->getVar('id_ongkir');
+        $this->M_ongkir->ubah([
+            'nama_kota'     => $this->request->getVar('nama_kota'),
+            'tarif'         => $this->request->getVar('tarif')
+        ], $id_ongkir);
+        session()->setFlashdata('sukses', 'Data berhasil disimpan');
+        return redirect()->to('/admin/ongkir');
+    }
+
+    public function hapusOngkir($id_ongkir)
+    {
+        $this->M_ongkir->hapus($id_ongkir);
+        session()->setFlashdata('hapus','Data berhasil dihapus');
+        return redirect()->to('/admin/ongkir');
     }
 }

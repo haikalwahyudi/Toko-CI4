@@ -24,27 +24,38 @@
                 <a href="<?= base_url('/admin/tambahOngkir') ?>" class=" btn btn-outline-primary"><i class="fa fa-plus"></i> Tambah</a>
             </div>
             <div class="card-body">
+            <?php if(session()->getFlashdata('sukses')){ ?>
+              <div class="alert alert-success">
+                <?= session()->getFlashdata('sukses'); ?>
+              </div>
+              <?php }else if(session()->getFlashdata('hapus')) {?>
+                <div class="alert alert-danger">
+                  <?= session()->getFlashdata('hapus') ?>
+                </div>
+              <?php }; ?>
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>No</th>
-                    <th>ID Ongkir</th>
+                    <th class="penomeran">No</th>
                     <th>Nama Kota</th>
                     <th>Tarif</th>
-                    <th>Aksi</th>
+                    <th class="aksi">Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php 
+                $no=1;
+                foreach($getOngkir as $ongkir) : ?>
                 <tr>
-                    <td>Trident</td>
-                    <td>Internet</td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
+                    <td><?= $no++; ?></td>
+                    <td><?= $ongkir['nama_kota']; ?></td>
+                    <td>Rp. <?= number_format($ongkir['tarif']); ?></td>
                     <td>
-                    <a href="<?= base_url('admin/ubahOngkir'); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></a>
+                    <a href="<?= base_url('admin/ubahOngkir/'. $ongkir['id_ongkir']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="<?= base_url('admin/hapusOngkir/'. $ongkir['id_ongkir']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin manghapus data!!\n Data yang dihapus tidak bisa dikembalikan')"><i class="fa fa-trash-alt"></i></a>
                 </td>
                 </tr>
+                <?php endforeach; ?>
                 </tbody>
                 </table>
             </div>
