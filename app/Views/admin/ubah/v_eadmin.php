@@ -28,25 +28,39 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('/admin/ubahAdminAksi'); ?>" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="id_admin" value="<?= $getAdmin->id_admin; ?>">
                             <div class="form-group">
                                 <label for="Nama">Nama</label>
-                                <input type="text" name="namaAdmin" class="form-control">
+                                <input type="text" name="namaAdmin" class="form-control
+                                <?= ($validation->hasError('namaAdmin') ? 'is-invalid' : ''); ?>" value="<?= $getAdmin->nama; ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('namaAdmin'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Username">Username</label>
-                                <input type="text" name="username" class="form-control">
+                                <input type="text" name="username" class="form-control
+                                <?= ($validation->hasError('username') ? 'is-invalid' : ''); ?>" value="<?= $getAdmin->username; ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('username'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Password">Password</label>
-                                <input type="password" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control
+                                <?= ($validation->hasError('password') ? 'is-invalid' : ''); ?>" value="<?= $getAdmin->password; ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('password'); ?>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                                <a href="<?= base_url('/admin/admin'); ?>" class="btn btn-danger">Batal</a>
                             </div>
                         </form>
-                        <div class="card-footer">
-                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                        </div>
                     </div>
                 </div>
             </div>

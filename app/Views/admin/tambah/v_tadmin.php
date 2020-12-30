@@ -26,27 +26,45 @@
                 Form Pengisian Data Admin
             </div>
             <div class="card-body">
+                <?php if(session()->getFlashdata('sukses')){ ?>
+                <div class="alert alert-success">
+                    <?= session()->getFlashdata('sukses'); ?>
+                </div>
+                <?php } ?>
                 <div class="row">
                     <div class="col">
-                        <form action="#" method="post" enctype="multipart/form-data">
+                        <form action="<?= base_url('admin/tambahAdminAksi'); ?>" method="post">
                             <div class="form-group">
                                 <label for="Nama">Nama</label>
-                                <input type="text" name="namaAdmin" class="form-control">
+                                <input type="text" name="namaAdmin" class="form-control
+                                <?= ($validation->hasError('namaAdmin') ? 'is-invalid' : ''); ?>" autofocus value="<?= old('namaAdmin'); ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('namaAdmin'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Username">Username</label>
-                                <input type="text" name="username" class="form-control">
+                                <input type="text" name="username" class="form-control
+                                <?= ($validation->hasError('username') ? 'is-invalid' : ''); ?>" value="<?= old('username'); ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('username'); ?>
+                                </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="Password">Password</label>
-                                <input type="password" name="password" class="form-control">
+                                <input type="password" name="password" class="form-control
+                                <?= ($validation->hasError('password') ? 'is-invalid' : ''); ?>" value="<?= old('password'); ?>">
+                                <div class="invalid-feedback">
+                                    <?= $validation->getError('username'); ?>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                                <a href="<?= base_url('/admin/admin'); ?>" class="btn btn-danger">Batal</a>
                             </div>
                         </form>
-                        <div class="card-footer">
-                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
-                        </div>
                     </div>
                 </div>
             </div>

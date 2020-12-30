@@ -5,6 +5,7 @@
 use App\Models\M_produk;
 use App\Models\M_kategori;
 use App\Models\M_ongkir;
+use App\Models\M_admin;
 
 class Admin extends BaseController
 {
@@ -12,10 +13,13 @@ class Admin extends BaseController
     protected $M_produk;
     protected $M_kategori;
     protected $M_ongkir;
+    protected $M_admin;
+
     public function __construct(){
         $this->M_produk = new M_produk();
         $this->M_kategori = new M_kategori();
         $this->M_ongkir = new M_ongkir();
+        $this->M_admin = new M_admin();
     }
 //===================== Halaman Menu ========================
     public function index()
@@ -230,7 +234,8 @@ class Admin extends BaseController
     public function admin()
     {
         $data = [
-            'title' => 'Admin'
+            'title'         => 'Admin',
+            'getAdmin'      => $this->M_admin->ambilData()
         ];
         return view('admin/v_admin', $data);
     }
@@ -238,17 +243,96 @@ class Admin extends BaseController
     public function tambahAdmin()
     {
         $data = [
-            'title' => 'Tambah Data Admin'
+            'title'         => 'Tambah Data Admin',
+            'validation'    => \Config\Services::validation()
         ];
         return view('admin/tambah/v_tadmin', $data);
     }
 
-    public function ubahAdmin()
+    public function tambahAdminAksi()
+    {
+        if(!$this->validate([
+            'namaAdmin'      => [
+                'rules'      => 'required',
+                'errors'     =>   [
+                    'required'  => 'Nama admin harus diisi'
+                ]
+            ],
+            'username'      => [
+                'rules'     => 'required',
+                'errors'    =>   [
+                    'required'  => 'Username harus diisi'
+                ]
+            ],
+            'password'      => [
+                'rules'     => 'required',
+                'errors'    =>   [
+                    'required'  => 'Password harus diisi'
+                ]
+            ],
+        ])){
+            return redirect()->to('/admin/tambahAdmin')->withInput();
+        }
+
+        $this->M_admin->simpan([
+            'nama'      => $this->request->getVar('namaAdmin'),
+            'username'  => $this->request->getVar('username'),
+            'password'  => $this->request->getVar('password')
+        ]);
+        session()->setFlashdata('sukses', 'Data berhasil disimpan');
+        return redirect()->to('/admin/tambahAdmin');
+    }
+
+    public function ubahAdmin($id_admin)
     {
         $data = [
-            'title' => 'Ubah Data Admin'
+            'title'         => 'Ubah Data Admin',
+            'getAdmin'      => $this->M_admin->ambilData($id_admin)->getRow(),
+            'validation'    => \Config\Services::validation()
         ];
         return view('admin/ubah/v_eadmin', $data);
+    }
+
+    public function ubahAdminAksi()
+    {
+        if(!$this->validate([
+            'namaAdmin'     => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => 'Nama admin harus diisi.'
+                ]
+            ],
+            'username'     => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => 'Username harus diisi.'
+                ]
+            ],
+            'password'     => [
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => 'Password harus diisi.'
+                ]
+            ],
+        ])){
+            return redirect()->to('/admin/ubahAdmin/'.$this->request->getVar('id_admin'))->withInput();
+        }
+
+        $id_admin = $this->request->getVar('id_admin');
+        $this->M_admin->ubah([
+            'nama'      => $this->request->getVar('namaAdmin'),
+            'username'  => $this->request->getVar('username'),
+            'password'  => $this->request->getVar('password')
+        ], $id_admin);
+        session()->setFlashdata('sukses', 'Data berhasil diubah.');
+        return redirect()->to('/admin/admin');
+    }
+
+    public function hapusAdmin($id_admin)
+    {
+        $this->M_admin->hapus($id_admin);
+        session()->setFlashdata('hapus','Data berhasil dihapus.');
+        return redirect()->to('/admin/admin');
     }
     
     public function pelanggan()
