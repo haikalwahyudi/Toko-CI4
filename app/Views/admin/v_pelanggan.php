@@ -21,6 +21,15 @@
     <section class="content">
         <div class="card">
             <div class="card-body">
+            <?php if(session()->getFlashdata('sukses')){ ?>
+              <div class="alert alert-success">
+                <?= session()->getFlashdata('sukses'); ?>
+              </div>
+            <?php }else if(session()->getFlashdata('hapus')){ ?>
+              <div class="alert alert-danger">
+                <?= session()->getFlashdata('hapus'); ?>
+              </div>
+            <?php }; ?>
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -33,16 +42,21 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php 
+                $no=1;
+                foreach($getPelanggan as $pelanggan) : ?>
                 <tr>
-                    <td>Trident</td>
-                    <td>Internet</td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
+                    <td><?= $no++; ?></td>
+                    <td><?= $pelanggan['nama_pelanggan']; ?></td>
+                    <td><?= $pelanggan['email_pelanggan']; ?></td>
+                    <td><?= $pelanggan['password_pelanggan']; ?></td>
+                    <td><?= $pelanggan['telpon_pelanggan']; ?></td>
                     <td>
-                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash-alt"></i></a>
+                    <a href="<?= base_Url('admin/ubahPelanggan/'.$pelanggan['id_pelanggan']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="<?= base_Url('admin/hapusPelanggan/'.$pelanggan['id_pelanggan']); ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?? \n Data yang sudah dihapus tidak bisa dikembalikan')"><i class="fa fa-trash-alt"></i></a>
                     </td>
                 </tr>
+                <?php endforeach; ?>
                 </tbody>
                 </table>
             </div>

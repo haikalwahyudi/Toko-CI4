@@ -6,6 +6,7 @@ use App\Models\M_produk;
 use App\Models\M_kategori;
 use App\Models\M_ongkir;
 use App\Models\M_admin;
+use App\Models\M_pelanggan;
 
 class Admin extends BaseController
 {
@@ -14,12 +15,14 @@ class Admin extends BaseController
     protected $M_kategori;
     protected $M_ongkir;
     protected $M_admin;
+    protected $M_pelanggan;
 
     public function __construct(){
         $this->M_produk = new M_produk();
         $this->M_kategori = new M_kategori();
         $this->M_ongkir = new M_ongkir();
         $this->M_admin = new M_admin();
+        $this->M_pelanggan = new M_pelanggan();
     }
 //===================== Halaman Menu ========================
     public function index()
@@ -338,9 +341,70 @@ class Admin extends BaseController
     public function pelanggan()
     {
         $data = [
-            'title' => 'Pelanggan'
+            'title'         => 'Pelanggan',
+            'getPelanggan'  => $this->M_pelanggan->ambilData()
         ];
         return view('admin/v_pelanggan', $data);
+    }
+
+    public function ubahPelanggan($id_pelanggan)
+    {
+        $data = [
+            'title'         => 'Ubah Data Pelanggan',
+            'getPelanggan'  => $this->M_pelanggan->ambilData($id_pelanggan)->getRow(),
+            'validation'    => \Config\Services::validation()
+        ];
+        return view('/admin/ubah/v_epelanggan', $data);
+    }
+
+    public function ubahPelangganAksi()
+    {
+        if(!$this->validate([
+            "nama_pelanggan"    => [
+                'rules'         => 'required',
+                'errors'        => [
+                    'required'  => 'Nama harus diisi.'
+                ]
+            ],
+            "email_pelanggan"   => [
+                'rules'         => 'required',
+                'errors'        => [
+                    'required'  => 'Email harus diisi.'
+                ]
+            ],
+            "password_pelanggan"=> [
+                'rules'         => 'required',
+                'errors'        => [
+                    'required'  => 'Password harus diisi.'
+                ]
+            ],
+            "telpon_pelanggan"  => [
+                'rules'         => 'required',
+                'errors'        => [
+                    'required'  => 'Nomor telpon harus diisi.'
+                ]
+            ]
+        ])){
+            return redirect()->to('/admin/ubahPelanggan/'.$this->request->getVar('id_pelanggan'))->withInput();
+        }
+
+        $id_pelanggan = $this->request->getVar('id_pelanggan');
+        $this->M_pelanggan->ubah([
+            'nama_pelanggan'    => $this->request->getVar('nama_pelanggan'),
+            'email_pelanggan'   => $this->request->getVar('email_pelanggan'),
+            'password_pelanggan'=> $this->request->getVar('password_pelanggan'),
+            'telpon_pelanggan'  => $this->request->getVar('telpon_pelanggan')
+        ], $id_pelanggan);
+
+        session()->setFlashdata('sukses','Data berhasil disimpan');
+        return redirect()->to('/admin/pelanggan');
+    }
+
+    public function hapusPelanggan($id_pelanggan)
+    {
+        $this->M_pelanggan->hapus($id_pelanggan);
+        session()->setFlashdata('hapus', 'Data berhasil dihapus');
+        return redirect()->to('/admin/pelanggan');
     }
 
     public function kategori()
