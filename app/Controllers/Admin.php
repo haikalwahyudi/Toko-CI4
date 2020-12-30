@@ -7,6 +7,7 @@ use App\Models\M_kategori;
 use App\Models\M_ongkir;
 use App\Models\M_admin;
 use App\Models\M_pelanggan;
+use App\Models\M_pembelian;
 
 class Admin extends BaseController
 {
@@ -16,6 +17,7 @@ class Admin extends BaseController
     protected $M_ongkir;
     protected $M_admin;
     protected $M_pelanggan;
+    protected $M_pembelian;
 
     public function __construct(){
         $this->M_produk = new M_produk();
@@ -23,6 +25,7 @@ class Admin extends BaseController
         $this->M_ongkir = new M_ongkir();
         $this->M_admin = new M_admin();
         $this->M_pelanggan = new M_pelanggan();
+        $this->M_pembelian = new M_pembelian();
     }
 //===================== Halaman Menu ========================
     public function index()
@@ -229,9 +232,17 @@ class Admin extends BaseController
     public function pembelian()
     {
         $data = [
-            'title' => 'Pembelian'
+            'title'         => 'Pembelian',
+            'getPembelian'  => $this->M_pembelian->ambilData()
         ];
         return view('admin/v_pembelian',$data);
+    }
+
+    public function hapusPembelian($id_pembelian)
+    {
+        $this->M_pembelian->hapus($id_pembelian);
+        session()->setFlashdata('hapus','Pembelian dibatalkan');
+        return redirect()->to('/admin/pembelian');
     }
     
     public function admin()

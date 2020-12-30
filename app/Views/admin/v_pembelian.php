@@ -21,11 +21,15 @@
     <section class="content">
         <div class="card">
             <div class="card-body">
+            <?php if(session()->getFlashdata('hapus')) : ?>
+              <div class="alert alert-danger">
+                <?= session()->getFlashdata('hapus'); ?>
+              </div>
+            <?php endif; ?>
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>Id Pembelian</th>
                     <th>Pembeli</th>
                     <th>Produk</th>
                     <th>Tgl Pembelian</th>
@@ -36,20 +40,23 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php 
+                $no = 1;
+                foreach($getPembelian as $pembelian) : ?>
                 <tr>
-                    <td>Trident</td>
-                    <td>Internet</td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
-                    <td>Win 95+</td>
+                    <td><?= $no++; ?></td>
+                    <td><?= $pembelian['id_pelanggan']; ?></td>
+                    <td><?= $pembelian['id_produk']; ?></td>
+                    <td><?= $pembelian['tgl_pembelian']; ?></td>
+                    <td><?= $pembelian['id_ongkir']; ?></td>
+                    <td><?= $pembelian['total_pembelian']; ?></td>
                     <td><span class="badge badge-warning">Belum Lunas</span></td>
                     <td>
                     <a href="#" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
-                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
+                    <a href="<?= base_url('/admin/hapusPembelian/'.$pembelian['id_pembelian']); ?>" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
+                <?php endforeach; ?>
                 </tbody>
                 </table>
             </div>
