@@ -1,28 +1,35 @@
-.gambar{
-    width: 50px;
+.gambar {
+  width: 50px;
 }
-.tengah{
-    text-align: center;
+.tengah {
+  text-align: center;
 }
-.table > tbody > tr > td{
-    vertical-align: middle;
+.table > tbody > tr > td {
+  vertical-align: middle;
 }
-.penomeran{
-    width: 20px;
-    text-align: center;
+.penomeran {
+  width: 20px;
+  text-align: center;
 }
-.aksi{
-    width: 110px;
+.aksi {
+  width: 110px;
 }
-.tdetail{
-    width: 100px;
+.tdetail {
+  width: 100px;
 }
-.table > tbody > tr > #titik{
-    width: 20px;
+.table > tbody > tr > #titik {
+  width: 20px;
 }
-.table > tbody > tr > #deskripsi{
-    text-align: justify;
+.table > tbody > tr > #deskripsi {
+  text-align: justify;
 }
-.image{
-    border-radius: 15px;
+.image {
+  border-radius: 15px;
+}
+.img-pelanggan {
+  width: 100%;
+  object-fit: cover;
+}
+.pfooter {
+  background-color: white;
 }
