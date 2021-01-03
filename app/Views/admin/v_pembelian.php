@@ -45,11 +45,11 @@
                 foreach($getPembelian as $pembelian) : ?>
                 <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= $pembelian['id_pelanggan']; ?></td>
-                    <td><?= $pembelian['id_produk']; ?></td>
+                    <td><?= $pembelian['nama_pelanggan']; ?></td>
+                    <td><?= $pembelian['nama_produk']; ?></td>
                     <td><?= $pembelian['tgl_pembelian']; ?></td>
-                    <td><?= $pembelian['id_ongkir']; ?></td>
-                    <td><?= $pembelian['total_pembelian']; ?></td>
+                    <td><?= number_format($pembelian['tarif']); ?></td>
+                    <td><?= number_format($pembelian['total_pembelian']); ?></td>
                     <td><span class="badge badge-warning">Belum Lunas</span></td>
                     <td>
                     <a href="#" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
