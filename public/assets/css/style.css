@@ -28,8 +28,16 @@
 }
 .img-pelanggan {
   width: 100%;
-  object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 .pfooter {
   background-color: white;
+  border-radius: 15px;
+}
+#img-logo {
+  width: 77%;
+}
+.card-pelanggan {
+  border-radius: 15px;
 }

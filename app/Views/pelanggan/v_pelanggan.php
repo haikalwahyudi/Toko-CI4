@@ -23,11 +23,11 @@
 
       <?php foreach($getProduk as $produk) : ?>
       <div class="col-md-3 mb-4">
-        <div class="card h-100">
+        <div class="card h-100 card-pelanggan">
           <img src="<?= base_url('/img/'. $produk['foto_produk']); ?>" alt="<?= $produk['nama_produk']; ?>" class="img-pelanggan">
           <div class="card-body">
           <h2 class="card-title"><?= $produk['nama_produk']; ?></h2>
-          <p class="card-text text-sm"><span class="badge badge-success">Elektronik</span></p>
+          <p class="card-text text-sm"><span class="badge badge-success"><?= $produk['kategori']; ?></span></p>
           <p class="card-text text-center text-bold">Rp<?= number_format($produk['harga_jual']); ?></p>
           </div>
           <div class="card-footer text-center pfooter">

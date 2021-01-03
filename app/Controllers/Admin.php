@@ -39,8 +39,8 @@ class Admin extends BaseController
     public function detail($id)
     {
         $data = [
-            'title' => 'Detail',
-            'detail' => $this->M_produk->ambilData($id)->getRow()
+            'title'         => 'Detail',
+            'detail'        => $this->M_produk->ambilData($id)->getRow()
         ];
         return view('admin/v_detailadmin',$data);
     }
@@ -59,7 +59,8 @@ class Admin extends BaseController
     {
         $data = [
             'title' => 'Tambah Data Produk',
-            'validation' => \Config\Services::validation()
+            'validation' => \Config\Services::validation(),
+            'getKategori'     => $this->M_kategori->ambilData()
         ];
         return view('admin/tambah/v_tproduk',$data);
     }

@@ -47,7 +47,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('pengguna'); ?>">Lihat Website</a>
+        <a class="nav-link" target="_blank" href="<?= base_url('pelanggan'); ?>">Lihat Website</a>
       </li>
     </ul>
 

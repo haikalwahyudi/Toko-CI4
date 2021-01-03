@@ -40,7 +40,7 @@
                         <tr>
                             <th class="tdetail">Kategori</th>
                             <td id="titik">:</td>
-                            <td><?= $detail->id_kategori; ?></td>
+                            <td><?= $detail->kategori; ?></td>
                         </tr>
                         <tr>
                             <th>Harga Beli</th>

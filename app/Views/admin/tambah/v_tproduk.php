@@ -48,8 +48,9 @@
                                 <label for="Id Kategori">Kategori</label>
                                 <select class="form-control <?= ($validation->hasError('id_kategori')) ? 'is-invalid' : ''; ?>" aria-label="Default select example" name="id_kategori">
                                     <option value="">-- Pilih Kategori --</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
+                                    <?php foreach($getKategori as $kategori) : ?>
+                                    <option value="<?= $kategori['id_kategori']; ?>"><?= $kategori['kategori']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     <?= $validation->getError('id_kategori'); ?>

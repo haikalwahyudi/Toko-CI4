@@ -8,9 +8,14 @@ class M_Produk extends Model
     public function ambilData($id_produk = false)
     {
         if($id_produk === false){
-            return $this->findAll();
+            // return $this->findAll();
+            return $this->db->table($this->table)
+            ->join('kategori','kategori.id_kategori = produk.id_kategori')
+            ->get()->getResultArray();
         }
-        return $this->getWhere(['id_produk' => $id_produk]);
+            return $this->db->table($this->table)
+            ->join('kategori','kategori.id_kategori = produk.id_kategori')
+            ->getWhere(['id_produk' => $id_produk]);
     }
 
     public function simpan($data)
