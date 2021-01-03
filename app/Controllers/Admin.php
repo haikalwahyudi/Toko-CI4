@@ -126,13 +126,13 @@ class Admin extends BaseController
 
 
         $this->M_produk->simpan([
-            'nama_produk' => $this->request->getVar('namaProduk'),
-            'id_kategori' => $this->request->getVar('id_kategori'),
-            'harga_beli' => $this->request->getVar('harga_beli'),
-            'harga_jual' => $this->request->getVar('harga_jual'),
-            'berat' => $this->request->getVar('berat'),
-            'foto_produk' => $namagambar,
-            'deskripsi' => $this->request->getVar('deskripsi')
+            'nama_produk'   => $this->request->getVar('namaProduk'),
+            'id_kategori'   => $this->request->getVar('id_kategori'),
+            'harga_beli'    => $this->request->getVar('harga_beli'),
+            'harga_jual'    => $this->request->getVar('harga_jual'),
+            'berat'         => $this->request->getVar('berat'),
+            'foto_produk'   => $namagambar,
+            'deskripsi'     => $this->request->getVar('deskripsi')
         ]);
         session()->setFlashdata('berhasil','Data Berhasil Disimpan');
         return redirect()->to('/admin/tambahProduk');
@@ -154,9 +154,10 @@ class Admin extends BaseController
     public function editProduk($id_produk)
     {
         $data = [
-            'title' => 'Ubah Data Produk',
-            'getProduk' => $this->M_produk->ambilData($id_produk)->getRow(),
-            'validation' => \Config\Services::validation()
+            'title'         => 'Ubah Data Produk',
+            'getProduk'     => $this->M_produk->ambilData($id_produk)->getRow(),
+            'getKategori'   => $this->M_kategori->ambilData(),
+            'validation'    => \Config\Services::validation()
         ];
         
         return view('admin/ubah/v_eproduk',$data);

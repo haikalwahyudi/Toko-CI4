@@ -42,9 +42,10 @@
                             <div class="form-group">
                                 <label for="Id Kategori">Kategori</label>
                                 <select class="form-control <?= ($validation->hasError('id_kategori')) ? 'is-invalid' : ''; ?>" aria-label="Default select example" name="id_kategori">
-                                    <option value="">-- Pilih Kategori --</option>
-                                    <option value="1" <?php if($getProduk->id_kategori == "1"){echo "selected";} ?>>1</option>
-                                    <option value="2" <?php if($getProduk->id_kategori == "2"){echo "selected";} ?>>2</option>
+                                    
+                                    <?php foreach($getKategori as $kategori) : ?>
+                                    <option value="<?= $kategori['id_kategori']; ?>" <?php if($kategori['id_kategori'] == $getProduk->id_kategori){echo "selected";} ?>><?= $kategori['kategori']; ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     <?= $validation->getError('id_kategori'); ?>
