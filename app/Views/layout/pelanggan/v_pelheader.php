@@ -8,13 +8,12 @@
 
   <title><?= $title; ?></title>
 
+  <!-- Icon -->
+  <link rel="icon" type="image/png" href="img/logo/icon.png">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?= base_url(); ?>/template/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url(); ?>/template/assets/css/adminlte.min.css">
-  <!-- Google Font: Source Sans Pro -->
-  <!-- css -->
-  <!-- css -->
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
