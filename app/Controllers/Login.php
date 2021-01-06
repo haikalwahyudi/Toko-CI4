@@ -6,7 +6,7 @@ class Login extends BaseController
 {
     protected $M_admin;
 
-    public function __consturct()
+    public function __construct()
     {
         $this->M_admin = new M_admin();
     }
@@ -32,32 +32,31 @@ class Login extends BaseController
             'nama_admin'    => [
                 'rules'     => 'required',
                 'errors'    => [
-                    'reqiured'  => 'Nama tidak boleh kosong'
+                    'required'  => 'Nama tidak boleh kosong'
                 ]
             ],
             'email'         => [
-                'rules'     => 'required|is_unique[email.email_admin]|valid_email',
+                'rules'     => 'required|valid_email|is_unique[admin.email_admin]',
                 'errors'    => [
-                    'required'      => '{field} tidak boleh kosong',
-                    'is_unique'     => '{field} sudah terdaftar',
-                    'valid_email'   => '{field} tidak valid'
+                    'required'      => 'Email tidak boleh kosong',
+                    'is_unique'     => 'Email sudah terdaftar',
+                    'valid_email'   => 'Email tidak valid'
                 ]
             ],
             'password'      => [
                 'rules'     => 'required|min_length[6]',
                 'errors'    => [
-                    'required'      => '{field} todak boleh kosong',
-                    'min_length'    => '{field} tidak boleh kurang dari 6 karakter'
+                    'required'      => '{field} tidak boleh kosong',
+                    'min_length'    => 'Tidak boleh kurang dari 6 karakter'
                 ]
             ]
         ])){
             return redirect()->to('/Login/registrasiAdmin')->withInput();
         }
-
         $this->M_admin->simpan([
-            'nama_admin'    => $this->request->getVar('nama'),
+            'nama_admin'   => $this->request->getVar('nama_admin'),
             'email_admin'   => $this->request->getVar('email'),
-            'password'      => $this->request->getVar('password')
+            'password'    => $this->request->getVar('password'),
         ]);
         session()->setFlashdata('sukses','Akun berhasil dibuat');
         return redirect()->to('/Login/registrasiAdmin');

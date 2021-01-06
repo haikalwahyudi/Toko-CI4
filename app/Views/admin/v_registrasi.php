@@ -27,33 +27,49 @@
 
   <div class="card">
     <div class="card-body register-card-body">
+      <?php if(session()->getFlashdata('sukses')){ ?>
+        <div class="alert alert-success">
+            <?= session()->getFlashdata('sukses'); ?>
+        </div>
+      <?php } ?>
       <p class="login-box-msg">Buat Akun Admin</p>
 
       <form action="<?= base_url('/Login/registerAdminAksi'); ?>" method="post">
         <div class="input-group mb-3">
           <input type="text" class="form-control <?= ($validation->hasError('nama_admin') ? 'is-invalid' : ''); ?>"
-          name="nama_admin" placeholder="Nama Lengkap">jhkj
+          name="nama_admin" placeholder="Nama Lengkap" value="<?= old('nama_admin'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
+          <div class="invalid-feedback">
+            <?= $validation->getError('nama_admin'); ?>
+          </div>
         </div>
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" placeholder="Email">
+          <input type="text" class="form-control <?= ($validation->hasError('email') ? 'is-invalid' : ''); ?>" 
+          name="email" placeholder="Email" value="<?= old('email'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
+          <div class="invalid-feedback">
+            <?= $validation->getError('email'); ?>
+          </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password">
+          <input type="password" class="form-control <?= ($validation->hasError('password') ? 'is-invalid' : ''); ?>" 
+          name="password" placeholder="Password" value="<?= old('password'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
+          </div>
+          <div class="invalid-feedback">
+            <?= $validation->getError('password'); ?>
           </div>
         </div>
         <div class="row">
