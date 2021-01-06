@@ -27,49 +27,70 @@
 
   <div class="card">
     <div class="card-body register-card-body">
+    <?php if(session()->getFlashdata('sukses')) : ?>
+      <div class="alert alert-success">
+        <?= session()->getFlashdata('sukses'); ?>
+      </div>
+    <?php endif; ?>
       <p class="login-box-msg">Buat Akun</p>
 
-      <form action="" method="post">
+      <form action="<?= base_url('/Login/registerUserAksi'); ?>" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nama Lengkap">
+          <input type="text" name="nama_user" class="form-control <?= ($validation->hasError('nama_user') ? 'is-invalid' : ''); ?>" 
+          placeholder="Nama Lengkap" value="<?= old('nama_user'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
+          <div class="invalid-feedback">
+            <?= $validation->getError('nama_user'); ?>
+          </div>
         </div>
 
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="text" name="email" class="form-control <?= ($validation->hasError('email') ? 'is-invalid' : ''); ?>" 
+          placeholder="Email" value="<?= old('email'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
+          <div class="invalid-feedback">
+            <?= $validation->getError('email'); ?>
+          </div>
         </div>
 
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control <?= ($validation->hasError('password') ? 'is-invalid' : ''); ?>" 
+           placeholder="Password" name="password" value="<?= old('password'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
+          <div class="invalid-feedback">
+            <?= $validation->getError('password'); ?>
+          </div>
         </div>
 
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Nomor Telpon">
+          <input type="number" name="telpon" class="form-control <?= ($validation->hasError('telpon') ? 'is-invalid' : ''); ?>" 
+          placeholder="Nomor Telpon" value="<?= old('telpon'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-phone"></span>
             </div>
+          </div>
+          <div class="invalid-feedback">
+            <?= $validation->getError('telpon'); ?>
           </div>
         </div>
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Daftar</button>
-            <a href="/login/loginUser" class="btn btn-danger">Batal</a>
+            <a href="/login/loginUser" class="btn btn-warning text-white">Kembali</a>
           </div>
           <!-- /.col -->
         </div>
