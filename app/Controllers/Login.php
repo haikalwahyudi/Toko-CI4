@@ -51,7 +51,6 @@ class Login extends BaseController
 
         //Cek login
         $cek = $this->M_admin->where('email_admin', $email)->first();
-        //dd($cek);
 
         //membuat data session
         $sesData = [
@@ -80,7 +79,7 @@ class Login extends BaseController
     public function logoutAdmin()
     {
         session()->destroy();
-        return redirect()->to('/Login');
+        return redirect()->to('/Login/');
     }
 
     public function registrasiAdmin()
