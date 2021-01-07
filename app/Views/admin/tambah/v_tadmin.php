@@ -44,11 +44,11 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="Username">Username</label>
-                                <input type="text" name="username" class="form-control
-                                <?= ($validation->hasError('username') ? 'is-invalid' : ''); ?>" value="<?= old('username'); ?>">
+                                <label for="Username">Email</label>
+                                <input type="text" name="email" class="form-control
+                                <?= ($validation->hasError('email') ? 'is-invalid' : ''); ?>" value="<?= old('email'); ?>">
                                 <div class="invalid-feedback">
-                                    <?= $validation->getError('username'); ?>
+                                    <?= $validation->getError('email'); ?>
                                 </div>
                             </div>
 
@@ -57,7 +57,7 @@
                                 <input type="password" name="password" class="form-control
                                 <?= ($validation->hasError('password') ? 'is-invalid' : ''); ?>" value="<?= old('password'); ?>">
                                 <div class="invalid-feedback">
-                                    <?= $validation->getError('username'); ?>
+                                    <?= $validation->getError('password'); ?>
                                 </div>
                             </div>
                             <div class="card-footer">

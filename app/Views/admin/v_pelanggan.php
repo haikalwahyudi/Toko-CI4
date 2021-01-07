@@ -36,7 +36,6 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Password</th>
                     <th>Teplpon</th>
                     <th>Aksi</th>
                 </tr>
@@ -49,7 +48,6 @@
                     <td><?= $no++; ?></td>
                     <td><?= $pelanggan['nama_pelanggan']; ?></td>
                     <td><?= $pelanggan['email_pelanggan']; ?></td>
-                    <td><?= $pelanggan['password_pelanggan']; ?></td>
                     <td><?= $pelanggan['telpon_pelanggan']; ?></td>
                     <td>
                     <a href="<?= base_Url('admin/ubahPelanggan/'.$pelanggan['id_pelanggan']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>

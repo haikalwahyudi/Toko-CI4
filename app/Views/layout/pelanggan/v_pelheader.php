@@ -65,9 +65,15 @@
           </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">Login</a>
+        <?php if(session()->get('log_inp') != true){ ?>
+            <a href="<?= base_url('/Login/loginUser'); ?>" class="nav-link"><i class="fa fa-sign-in-alt"></i> Login</a>
+          <?php }else{ ?>
+            <a href="<?= base_url('/Login/logOutPelanggan'); ?>" class="nav-link"><i class="fa fa-sign-out-alt"></i> Logout</a>
+            
+          <?php } ?>
         </li>
       </ul>
+    
     </div>
   </nav>
   <!-- /.navbar -->

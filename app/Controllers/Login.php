@@ -104,7 +104,7 @@ class Login extends BaseController
                 'rules'     => 'required|valid_email|is_unique[admin.email_admin]',
                 'errors'    => [
                     'required'      => 'Email tidak boleh kosong',
-                    'is_unique'     => 'Email sudah terdaftar',
+                    'is_unique'     => 'Email sudah terdaftar, gunakan email yang lain.',
                     'valid_email'   => 'Email tidak valid'
                 ]
             ],
@@ -128,6 +128,16 @@ class Login extends BaseController
     }
 
 // ========== Login Pelanggan ========== 
+
+    public function loginUser()
+    {
+        $data = [
+            'title'         => 'Login User',
+            'validation'    => \Config\Services::validation()
+        ];
+        return view('pelanggan/v_loginUser',$data);
+    }
+
     public function registrasiUser()
     {
         $data = [
@@ -135,6 +145,56 @@ class Login extends BaseController
             'validation'    => \Config\Services::validation()
         ];
         return view('/pelanggan/v_registerUser', $data);
+    }
+
+    public function cekLoginPelanggan()
+    {
+        if(!$this->validate([
+            'email'         => [
+                'label'     => 'E-mail',
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => '{field} Tidak Boleh Kosong'
+                ]
+            ],
+            'password'      => [
+                'label'     => 'Password',
+                'rules'     => 'required',
+                'errors'    => [
+                    'required'  => '{field} Tidak Boleh Kosong'
+                ]
+            ]
+        ])){
+            return redirect()->to(base_url('/Login/loginUser'))->withInput();
+        }
+        $email      = $this->request->getVar('email');
+        $password   = $this->request->getVar('password');
+
+        //Cek login
+        $cek = $this->M_pelanggan->where('email_pelanggan', $email)->first();
+
+        //membuat data session
+        $sesData = [
+            'id_pelanggan'      => $cek['id_pelanggan'],
+            'nama_pelanggan'    => $cek['nama_pelanggan'],
+            'email_pelanggan'   => $cek['email_pelanggan'],
+            'log_inp'            => TRUE
+        ];
+
+        //melakukan pengecekan
+        if($cek)
+        {
+            if(password_verify($password, $cek['password_pelanggan'])){
+                session()->set($sesData);
+                return redirect()->to(base_url('/pelanggan'));
+            }else{
+                session()->setFlashdata('gagal','Password anda salah');
+                return redirect()->to('/Login/loginUser')->withInput();
+            }
+        }else{
+            session()->setFlashdata('gagal','Email anda salah');
+            return redirect()->to('/Login/loginUser')->withInput();
+        }
     }
 
     public function registerUserAksi()
@@ -174,16 +234,15 @@ class Login extends BaseController
         $this->M_pelanggan->simpan([
             'nama_pelanggan'        => $this->request->getVar('nama_user'),
             'email_pelanggan'       => $this->request->getVar('email'),
-            'password_pelanggan'    => $this->request->getVar('password'),
+            'password_pelanggan'    => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
             'telpon_pelanggan'      => $this->request->getVar('telpon')
         ]);
         session()->setFlashdata('sukses','Akun berhasil dibuat');
         return redirect()->to('/Login/registrasiUser');
     }
-
-    public function loginUser()
+    public function logOutPelanggan()
     {
-        $data['title'] = 'Login User';
-        return view('pelanggan/v_loginUser',$data);
+        session()->destroy();
+        return redirect()->to(base_url('/pelanggan'));
     }
 }

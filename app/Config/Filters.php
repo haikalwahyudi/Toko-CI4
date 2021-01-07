@@ -11,6 +11,7 @@ class Filters extends BaseConfig
 		'toolbar'  		=> \CodeIgniter\Filters\DebugToolbar::class,
 		'honeypot' 		=> \CodeIgniter\Filters\Honeypot::class,
 		'filterAdmin'	=> \App\Filters\filterAdmin::class,
+		'filterPelanggan'	=> \App\Filters\filterPelanggan::class,
 	];
 
 	// Always applied before every request
@@ -22,6 +23,12 @@ class Filters extends BaseConfig
 					'pelanggan', 'pelanggan/*',
 					'/'
 					]],
+			'filterPelanggan'	=> [
+				'except' => [
+					'Login/loginUser', 'Login/*',
+					'pelanggan', 'pelanggan/*'
+					]
+				]
 			//'honeypot'
 			// 'csrf',
 		],
@@ -30,7 +37,13 @@ class Filters extends BaseConfig
 				'except' => [
 					'admin', 'admin/*',
 					'pelanggan', 'pelanggan/*'
-					]],
+					]
+				],
+			'filterPelanggan'	=> [
+				'except' => [
+					'pelanggan', 'pelanggan/*'
+					]
+				],
 			'toolbar',
 			//'honeypot'
 		],

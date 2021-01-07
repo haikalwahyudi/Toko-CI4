@@ -38,8 +38,7 @@
                 <tr>
                     <th class="penomeran">No</th>
                     <th>Nama</th>
-                    <th>Username</th>
-                    <th>Password</th>
+                    <th>Email</th>
                     <th class="aksi">Aksi</th>
                 </tr>
                 </thead>
@@ -49,9 +48,8 @@
                 foreach($getAdmin as $admin) : ?>
                 <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= $admin['nama']; ?></td>
-                    <td><?= $admin['username']; ?></td>
-                    <td><?= $admin['password']; ?></td>
+                    <td><?= $admin['nama_admin']; ?></td>
+                    <td><?= $admin['email_admin']; ?></td>
                     <td>
                     <a href="<?= base_url('admin/ubahAdmin/'.$admin['id_admin']); ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
                     <a href="<?= base_url('admin/hapusAdmin/'.$admin['id_admin']); ?>" class="btn btn-danger btn-sm"

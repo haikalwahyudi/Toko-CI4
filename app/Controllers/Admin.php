@@ -274,16 +274,19 @@ class Admin extends BaseController
                     'required'  => 'Nama admin harus diisi'
                 ]
             ],
-            'username'      => [
-                'rules'     => 'required',
-                'errors'    =>   [
-                    'required'  => 'Username harus diisi'
+            'email'         => [
+                'rules'     => 'required|valid_email|is_unique[admin.email_admin]',
+                'errors'    => [
+                    'required'      => 'Email tidak boleh kosong',
+                    'is_unique'     => 'Email sudah terdaftar, gunakan email yang lain.',
+                    'valid_email'   => 'Email tidak valid'
                 ]
             ],
             'password'      => [
-                'rules'     => 'required',
-                'errors'    =>   [
-                    'required'  => 'Password harus diisi'
+                'rules'     => 'required|min_length[6]',
+                'errors'    => [
+                    'required'      => '{field} tidak boleh kosong',
+                    'min_length'    => 'Tidak boleh kurang dari 6 karakter'
                 ]
             ],
         ])){
@@ -291,8 +294,8 @@ class Admin extends BaseController
         }
 
         $this->M_admin->simpan([
-            'nama'      => $this->request->getVar('namaAdmin'),
-            'username'  => $this->request->getVar('username'),
+            'nama_admin'      => $this->request->getVar('namaAdmin'),
+            'email_admin'  => $this->request->getVar('email'),
             'password'  => $this->request->getVar('password')
         ]);
         session()->setFlashdata('sukses', 'Data berhasil disimpan');
