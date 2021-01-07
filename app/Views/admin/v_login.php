@@ -28,23 +28,34 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
+    <?php if(session()->getFlashdata('gagal')): ?>
+      <div class="alert alert-warning"><?= session()->getFlashdata('gagal'); ?></div>
+    <?php endif; ?>
       <p class="login-box-msg">Login Admin</p>
 
-      <form action="#" method="post">
+      <form action="<?= base_url('/Login/cekLoginAdmin/'); ?>" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control <?= ($validate->hasError('email') ? 'is-invalid' : ''); ?>" 
+          name="email" value="<?= old('email'); ?>" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
+          <div class="invalid-feedback">
+            <?= $validate->getError('email'); ?>
+          </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control <?= ($validate->hasError('password') ? 'is-invalid' : ''); ?>" 
+          name="password" value="<?= old('password'); ?>" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
+          </div>
+          <div class="invalid-feedback">
+            <?= $validate->getError('password'); ?>
           </div>
         </div>
         <div class="row">

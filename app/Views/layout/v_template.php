@@ -58,13 +58,13 @@
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-          Halo, Haikal Wahyudi &nbsp;&nbsp;&nbsp;<i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-left"></i>
+          Halo, <?= session()->get('nama_admin'); ?> &nbsp;&nbsp;&nbsp;<i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-left"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
           <a href="#" class="dropdown-item">
           Profile
           </a>
-          <a href="#" class="dropdown-item">
+          <a href="<?= base_url('/Login/logoutAdmin'); ?>" class="dropdown-item">
           Logout
           </a>
         </div>
