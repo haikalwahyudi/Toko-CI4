@@ -31,7 +31,7 @@
                         <form action="<?= base_url('admin/tambahKategoriAksi'); ?>" method="post">
                             <div class="form-group">
                                 <label for="Kategori">Kategori</label>
-                                <input type="text" name="kategori" 
+                                <input type="text" name="kategori" value="<?= old('kategori'); ?>"
                                 class="form-control <?= ($validate->hasError('kategori') ? 'is-invalid' : ''); ?>" autofocus>
                                 <div class="invalid-feedback">
                                   <?= $validate->getError('kategori'); ?>

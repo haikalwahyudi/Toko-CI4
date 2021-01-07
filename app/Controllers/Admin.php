@@ -321,10 +321,12 @@ class Admin extends BaseController
                     'required'  => 'Nama admin harus diisi.'
                 ]
             ],
-            'username'     => [
-                'rules'     => 'required',
+            'email'         => [
+                'rules'     => 'required|valid_email|is_unique[pelanggan.email_pelanggan]',
                 'errors'    => [
-                    'required'  => 'Username harus diisi.'
+                    'required'      => 'Email tidak boleh kosong',
+                    'valid_email'   => 'Email tidak Valid',
+                    'is_unique'     => 'Email sudah terdaftar, gunakan email yang lain.'
                 ]
             ],
             'password'     => [
@@ -339,9 +341,9 @@ class Admin extends BaseController
 
         $id_admin = $this->request->getVar('id_admin');
         $this->M_admin->ubah([
-            'nama'      => $this->request->getVar('namaAdmin'),
-            'username'  => $this->request->getVar('username'),
-            'password'  => $this->request->getVar('password')
+            'nama_admin'    => $this->request->getVar('namaAdmin'),
+            'email_admin'   => $this->request->getVar('email'),
+            'password'      => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
         ], $id_admin);
         session()->setFlashdata('sukses', 'Data berhasil diubah.');
         return redirect()->to('/admin/admin');
@@ -443,11 +445,13 @@ class Admin extends BaseController
 
     public function tambahKategoriAksi()
     {
+        $kategori = $this->request->getVar('kategori');
         if(!$this->validate([
             'kategori'      => [
-                'rules'     => 'required',
+                'rules'     => 'required|is_unique[kategori.kategori]',
                 'errors'    => [
-                    'required'  => 'Kategori harus diisi.'
+                    'required'  => 'Kategori harus diisi.',
+                    'is_unique'  => 'Kategori '. $kategori .' sudah ada, isikan kategori yang lain.'
                 ]
             ]
         ])){
@@ -473,11 +477,20 @@ class Admin extends BaseController
 
     public function ubahKategoriAksi()
     {
+        $kategori = $this->request->getVar('kategori');
+        //pengecekan
+        $nmKategori = $this->M_kategori->ambilData($this->request->getVar('id_kategori'))->getRow();
+        if($nmKategori->kategori == $this->request->getVar('kategori')){
+            $rule = 'required';
+        }else{
+            $rule = 'required|is_unique[kategori.kategori]';
+        }
         if(!$this->validate([
             'kategori'      => [
-                'rules'     => 'required',
+                'rules'     => $rule,
                 'errors'    => [
-                    'required'  => 'Kategori harus diisi.'
+                    'required'  => 'Kategori harus diisi.',
+                    'is_unique' => 'Kategori '.$kategori.' sudah ada.'
                 ]
             ]
         ])){
@@ -519,12 +532,15 @@ class Admin extends BaseController
 
     public function tambahOngkirAksi()
     {
+        //Ambil nama kota dari form
+        $kota = $this->request->getVar('nama_kota');
         //validasi
         if(!$this->validate([
             'nama_kota'     => [
-                'rules'     => 'required',
+                'rules'     => 'required|is_unique[ongkir.nama_kota]',
                 'errors'    => [
-                    'required'  => 'Nama Kota harus diisi.'
+                    'required'  => 'Nama Kota harus diisi.',
+                    'is_unique' => 'Kota '. $kota .' sudah ada, isikan nama kota yang lain.'
                 ]
                 ],
             'tarif'         => [
@@ -557,11 +573,21 @@ class Admin extends BaseController
 
     public function ubahOngkirAksi()
     {
+        //pengecekan
+        $nmKotaLama = $this->M_ongkir->ambilData($this->request->getVar('id_ongkir'))->getRow();
+        if($nmKotaLama->nama_kota == $this->request->getVar('nama_kota')){
+            $rule = 'required';
+        }else{
+            $rule = 'required|is_unique[ongkir.nama_kota]';
+        }
+
+        $kota = $this->request->getVar('nama_kota');
         if(!$this->validate([
             'nama_kota'     => [
-                'rules'     => 'required',
+                'rules'     => $rule,
                 'errors'    => [
-                    'required'   => "Nama kota harus diisi."
+                    'required'  => 'Nama Kota harus diisi.',
+                    'is_unique' => 'Kota '. $kota .' sudah ada, isikan nama kota yang lain.'
                 ]
             ],
             'tarif'     => [

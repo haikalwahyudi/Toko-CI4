@@ -33,18 +33,18 @@
                             <div class="form-group">
                                 <label for="Nama">Nama</label>
                                 <input type="text" name="namaAdmin" class="form-control
-                                <?= ($validation->hasError('namaAdmin') ? 'is-invalid' : ''); ?>" value="<?= $getAdmin->nama; ?>">
+                                <?= ($validation->hasError('namaAdmin') ? 'is-invalid' : ''); ?>" value="<?= $getAdmin->nama_admin; ?>">
                                 <div class="invalid-feedback">
                                     <?= $validation->getError('namaAdmin'); ?>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="Username">Username</label>
-                                <input type="text" name="username" class="form-control
-                                <?= ($validation->hasError('username') ? 'is-invalid' : ''); ?>" value="<?= $getAdmin->username; ?>">
+                                <label for="Email">Email</label>
+                                <input type="text" name="email" class="form-control
+                                <?= ($validation->hasError('email') ? 'is-invalid' : ''); ?>" value="<?= $getAdmin->email_admin; ?>">
                                 <div class="invalid-feedback">
-                                    <?= $validation->getError('username'); ?>
+                                    <?= $validation->getError('email'); ?>
                                 </div>
                             </div>
 

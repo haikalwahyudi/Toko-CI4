@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         <div class="card-footer">
-                            <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                            <button type="submit" name="simpan" class="btn btn-primary">Ubah</button>
                             <a href="<?= base_url('/admin/kategori/');?>" class="btn btn-danger">Batal</a>
                         </div>
                         </form>

@@ -11,6 +11,7 @@ class M_Produk extends Model
             // return $this->findAll();
             return $this->db->table($this->table)
             ->join('kategori','kategori.id_kategori = produk.id_kategori')
+            ->orderBy('id_produk', 'DESC')
             ->get()->getResultArray();
         }
             return $this->db->table($this->table)
