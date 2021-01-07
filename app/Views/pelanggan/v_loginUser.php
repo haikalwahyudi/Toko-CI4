@@ -61,7 +61,8 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a href="<?= base_url('/pelanggan'); ?>" class="btn btn-warning text-white">Batal</a>
           </div>
           <!-- /.col -->
         </div>

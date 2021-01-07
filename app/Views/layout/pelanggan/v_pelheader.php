@@ -62,15 +62,15 @@
         <li class="nav-item">
           <a class="nav-link" href="#">
             <i class="fa fa-shopping-cart"></i>
-            <span class="badge badge-danger badge-pill navbar-badge">15</span>
+            <!-- <span class="badge badge-danger badge-pill navbar-badge">15</span> -->
           </a>
         </li>
         <li class="nav-item">
          
           <?php if(session()->get('log_inp') != true){ ?>
-            <a href="<?= base_url('/Login/loginUser'); ?>" class="nav-link"><i class="fa fa-sign-in-alt"></i> Login</a>
+            <a href="<?= base_url('/Login/loginUser'); ?>" class="nav-link"><i class="fa fa-sign-in-alt"></i> Masuk</a>
           <?php }else{ ?>
-            <a href="<?= base_url('/Login/logOutPelanggan'); ?>" class="nav-link"><i class="fa fa-sign-out-alt"></i> Logout</a>
+            <a href="<?= base_url('/Login/logOutPelanggan'); ?>" class="nav-link"><i class="fa fa-sign-out-alt"></i> Keluar</a>
           <?php 
             }
         }
