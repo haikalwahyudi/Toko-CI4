@@ -32,7 +32,9 @@
           </div>
           <div class="card-footer text-center pfooter">
           <a href="#" class="btn text-center btn-sm btn-outline-primary">Detail</a>
+          <?php if(session()->get('log_in') != true) : ?>
           <a href="#" class="btn btn-primary text-center btn-sm mt-1 mb-1"><i class="fa fa-plus"></i> Keranjang</a>
+          <?php endif; ?>
           </div>
         </div>
       </div>

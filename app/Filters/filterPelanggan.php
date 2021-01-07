@@ -8,10 +8,10 @@ class filterPelanggan implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
-        if(session()->get('log_inp') != true){
-            //session()->setFlashdata('gagal','Anda harus login terlebih dahulu');
-            return redirect()->to(base_url('/pelanggan'));
-        }
+        // if(session()->get('log_inp') != true){
+        //     //session()->setFlashdata('gagal','Anda harus login terlebih dahulu');
+        //     return redirect()->to(base_url('/pelanggan'));
+        // }
     }
 
     //--------------------------------------------------------------------

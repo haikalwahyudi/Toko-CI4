@@ -58,6 +58,7 @@
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
         <!-- Notifications Menu -->
+        <?php if(session()->get('log_in') != true) { ?>
         <li class="nav-item">
           <a class="nav-link" href="#">
             <i class="fa fa-shopping-cart"></i>
@@ -65,12 +66,15 @@
           </a>
         </li>
         <li class="nav-item">
-        <?php if(session()->get('log_inp') != true){ ?>
+         
+          <?php if(session()->get('log_inp') != true){ ?>
             <a href="<?= base_url('/Login/loginUser'); ?>" class="nav-link"><i class="fa fa-sign-in-alt"></i> Login</a>
           <?php }else{ ?>
             <a href="<?= base_url('/Login/logOutPelanggan'); ?>" class="nav-link"><i class="fa fa-sign-out-alt"></i> Logout</a>
-            
-          <?php } ?>
+          <?php 
+            }
+        }
+          ?>
         </li>
       </ul>
     
