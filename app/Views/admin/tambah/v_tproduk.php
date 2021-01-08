@@ -26,11 +26,6 @@
                 Form Pengisian Data Produk
             </div>
             <div class="card-body">
-            <?php if(session()->getFlashdata('berhasil')){ ?>
-            <div class="alert alert-success" role="alert">
-            <?= session()->getFlashdata('berhasil') ?>
-            </div>
-            <?php } ?>
                 <div class="row">
                     <div class="col">
                         <form action="<?= base_url('/admin/simpanProduk'); ?>" method="post" enctype="multipart/form-data">

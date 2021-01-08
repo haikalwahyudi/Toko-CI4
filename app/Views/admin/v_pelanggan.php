@@ -21,15 +21,6 @@
     <section class="content">
         <div class="card">
             <div class="card-body">
-            <?php if(session()->getFlashdata('sukses')){ ?>
-              <div class="alert alert-success">
-                <?= session()->getFlashdata('sukses'); ?>
-              </div>
-            <?php }else if(session()->getFlashdata('hapus')){ ?>
-              <div class="alert alert-danger">
-                <?= session()->getFlashdata('hapus'); ?>
-              </div>
-            <?php }; ?>
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

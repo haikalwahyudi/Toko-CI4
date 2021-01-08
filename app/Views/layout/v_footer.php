@@ -2,11 +2,11 @@
     <strong>Copyright &copy; <?= date('Y') ?>.</strong> Haikal Wahyudi
   </footer>
 
-  <!-- Control Sidebar -->
+  <!-- Control Sidebar
   <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
+  
+  </aside> -->
+
 </div>
 <!-- ./wrapper -->
 <script src="plugins/jquery/jquery.min.js"></script>
@@ -16,26 +16,8 @@
 <script>
   $.widget.bridge('uibutton', $.ui.button)
 </script>
-<!-- ChartJS -->
-<script src="<?= base_url() ?>/template/plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="<?= base_url() ?>/template/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="<?= base_url() ?>/template/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="<?= base_url() ?>/template/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="<?= base_url() ?>/template/plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="<?= base_url() ?>/template/plugins/moment/moment.min.js"></script>
-<script src="<?= base_url() ?>/template/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="<?= base_url() ?>/template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
 <script src="<?= base_url() ?>/template/plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="<?= base_url() ?>/template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?= base_url() ?>/template/assets/js/pages/dashboard.js"></script>
 <!-- jQuery -->
 <script src="<?= base_url() ?>/template/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -49,6 +31,11 @@
 <script src="<?= base_url() ?>/template/assets/js/demo.js"></script>
 <!-- Summernote -->
 <script src="<?= base_url() ?>/template/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- Alert -->
+<!-- SweetAlert2 -->
+<script src="<?= base_url() ?>/template/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?= base_url() ?>/template/plugins/toastr/toastr.min.js"></script>
 
 <script>
   $(function () {
@@ -67,7 +54,43 @@
     // Summernote
     $('.textarea').summernote()
   })
+
+  //Notifikasi Toast
+  function pesan($warna,$pesan){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+
+    switch($warna){
+      case "1":
+        toastr.success($pesan);
+        break;
+      case "2":
+        toastr.warning($pesan);
+        break;
+      default:
+        toastr.error($pesan);
+
+    }
+      
+  }
 </script>
+<?php if(session()->getFlashdata('sukses')){ ?>
+    <script>
+      pesan('1','<?= session()->getFlashdata('sukses'); ?>');
+    </script>
+<?php }else if(session()->getFlashdata('ubah')){?>
+    <script>
+      pesan('2','<?= session()->getFlashdata('ubah'); ?>');
+    </script>
+<?php }else if(session()->getFlashdata('hapus')){?>
+    <script>
+      pesan('3','<?= session()->getFlashdata('hapus'); ?>');
+    </script>
+  <?php } ?>
 
 </body>
 </html>

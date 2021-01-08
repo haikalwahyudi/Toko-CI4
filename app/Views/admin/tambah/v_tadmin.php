@@ -26,11 +26,6 @@
                 Form Pengisian Data Admin
             </div>
             <div class="card-body">
-                <?php if(session()->getFlashdata('sukses')){ ?>
-                <div class="alert alert-success">
-                    <?= session()->getFlashdata('sukses'); ?>
-                </div>
-                <?php } ?>
                 <div class="row">
                     <div class="col">
                         <form action="<?= base_url('admin/tambahAdminAksi'); ?>" method="post">

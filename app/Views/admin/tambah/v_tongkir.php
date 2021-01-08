@@ -28,11 +28,6 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                    <?php if(session()->getFlashdata('sukses')) : ?>
-                      <div class="alert alert-success">
-                        <?= session()->getFlashdata('sukses'); ?>
-                      </div>
-                    <?php endif; ?>
                         <form action="<?= base_url('/admin/tambahOngkirAksi'); ?>" method="post">
                             <div class="form-group">
                                 <label for="Nama Kota">Nama Kota</label>

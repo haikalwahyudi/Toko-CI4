@@ -134,7 +134,7 @@ class Admin extends BaseController
             'foto_produk'   => $namagambar,
             'deskripsi'     => $this->request->getVar('deskripsi')
         ]);
-        session()->setFlashdata('berhasil','Data Berhasil Disimpan');
+        session()->setFlashdata('sukses','Data Produk Berhasil Disimpan');
         return redirect()->to('/admin/tambahProduk');
     }
 
@@ -345,7 +345,7 @@ class Admin extends BaseController
             'email_admin'   => $this->request->getVar('email'),
             'password'      => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT)
         ], $id_admin);
-        session()->setFlashdata('sukses', 'Data berhasil diubah.');
+        session()->setFlashdata('ubah', 'Data berhasil diubah.');
         return redirect()->to('/admin/admin');
     }
 
@@ -414,7 +414,7 @@ class Admin extends BaseController
             'telpon_pelanggan'  => $this->request->getVar('telpon_pelanggan')
         ], $id_pelanggan);
 
-        session()->setFlashdata('sukses','Data berhasil disimpan');
+        session()->setFlashdata('ubah','Data berhasil diubah');
         return redirect()->to('/admin/pelanggan');
     }
 
@@ -462,7 +462,7 @@ class Admin extends BaseController
             'kategori'  => $this->request->getVar('kategori')
         ]);
         session()->setFlashdata('sukses','Data Berhasil Ditambah');
-        return redirect()->to('/admin/kategori');
+        return redirect()->to('/admin/tambahKategori');
     }
 
     public function ubahKategori($id_kategori)
@@ -501,7 +501,7 @@ class Admin extends BaseController
         $this->M_kategori->ubah([
             'kategori'  => $this->request->getVar('kategori')
         ], $id_kategori);
-        session()->setFlashdata('sukses','Data berhasil diubah');
+        session()->setFlashdata('ubah','Data berhasil diubah');
         return redirect()->to('/admin/kategori');
     }
 
@@ -604,7 +604,7 @@ class Admin extends BaseController
             'nama_kota'     => $this->request->getVar('nama_kota'),
             'tarif'         => $this->request->getVar('tarif')
         ], $id_ongkir);
-        session()->setFlashdata('sukses', 'Data berhasil disimpan');
+        session()->setFlashdata('ubah', 'Data berhasil diubah');
         return redirect()->to('/admin/ongkir');
     }
 
@@ -613,5 +613,13 @@ class Admin extends BaseController
         $this->M_ongkir->hapus($id_ongkir);
         session()->setFlashdata('hapus','Data berhasil dihapus');
         return redirect()->to('/admin/ongkir');
+    }
+
+    public function toast()
+    {
+        $data = [
+            'title'         => 'Toast',
+        ];
+        return view('admin/v_toast', $data);
     }
 }

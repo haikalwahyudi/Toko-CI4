@@ -24,15 +24,6 @@
                 <a href="<?= base_url('/admin/tambahProduk'); ?>" class=" btn btn-outline-primary"><i class="fa fa-plus"></i> Tambah</a>
             </div>
             <div class="card-body">
-            <?php if(session()->getFlashdata('hapus')){ ?>
-              <div class="alert bg-danger">
-                <?= session()->getFlashdata('hapus'); ?>
-              </div>
-            <?php }else if(session()->getFlashdata('ubah')){?>
-              <div class="alert bg-success">
-                <?= session()->getFlashdata('ubah'); ?>
-              </div>
-            <?php } ?>
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

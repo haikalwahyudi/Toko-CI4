@@ -48,7 +48,7 @@
                                 </div>
                             </div>
                           <div class="card-footer">
-                              <button type="submit" name="simpan" class="btn btn-primary">Simpan</button>
+                              <button type="submit" name="simpan" class="btn btn-primary">Simpan Perubahan</button>
                               <a href="<?= base_url('/admin/ongkir'); ?>" class="btn btn-danger">Batal</a>
                           </div>
                         </form>
