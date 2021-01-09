@@ -72,7 +72,21 @@ class Pelanggan extends BaseController
         $cart = \Config\Services::cart();
         $cart->remove($id);
 
-        session()->setFlashdata('Sukses','1 barang telah dihapus');
+        session()->setFlashdata('hapus','1 barang telah dihapus dari keranjang');
         return redirect()->to(base_url('pelanggan/kbelanja'));
     }
-}
+
+    public function updateCart()
+    {
+        $cart = \Config\services::cart();
+        $i = 1;
+        foreach($cart->contents() as $produk){
+            $cart->update(array(
+                'rowid'   => $produk['rowid'],
+                'qty'     => $this->request->getVar('qty'. $i++),
+                ));
+            }
+            session()->setFlashdata('sukses','Keranjang berhasil diupdate');
+            return redirect()->to(base_url('/pelanggan/kbelanja'));
+        }
+    }

@@ -15,6 +15,7 @@
     </div>
     <!-- /.content-header -->
 
+<form action="<?= base_url('/pelanggan/updateCart'); ?>" method="post"> <!-- Form End -->
 <!-- Main content -->
 <div class="content">
     <div class="container"><!-- container -->
@@ -68,13 +69,14 @@
         <tbody>
         <?php
             $no=1;
+            $i=1;
             foreach($cart->contents() as $produk){
         ?>
         <tr>
             <td><?= $no++; ?></td>
             <td><?= $produk['name']; ?></td>
             <td>Rp. <?= number_format($produk['price']); ?></td>
-            <td><input type="number" name="qty" class="form-control form-control-sm" min="1" value="<?= $produk['qty']; ?>" width="100px"></td>
+            <td><input type="number" name="qty<?= $i++; ?>" class="form-control form-control-sm" min="1" value="<?= $produk['qty']; ?>" width="100px"></td>
             <td class="text-center"><img src="<?= base_url('/img/'. $produk['options']['foto_produk']); ?>" alt="foto Produk" width="30px"></td>
             <td>Rp. <?= number_format($produk['subtotal']); ?></td>
             <td class="text-center">
@@ -96,7 +98,7 @@
     <!-- this row will not appear when printing -->
     <div class="row no-print">
     <div class="col-12">
-        <a href="<?= base_url('/pelanggan/updateCart'); ?>" class="btn btn-warning mt-1 mb-1"><i class="fa fa-save"></i> Update</a>
+        <button type="submit" class="btn btn-warning mt-1 mb-1"><i class="fa fa-save"></i> Update</button>
         <div class="btn-group float-right">
             <a href="<?= base_url('/pelanggan/clear'); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus Semua Keranjang</a>
             <a href="<?= base_url('/pelanggan'); ?>" class="btn btn-primary"><i class="fa fa-cart-plus"></i> Belanja Lagi</a>
@@ -111,6 +113,7 @@
     </div><!-- Container End -->
 </div>
 <!-- Content End -->
+</form><!-- Form End --> 
 
 </div>
 <!-- /.content-wrapper -->

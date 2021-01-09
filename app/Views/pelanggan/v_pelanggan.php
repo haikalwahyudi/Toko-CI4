@@ -18,12 +18,6 @@
 <!-- Main content -->
 <div class="content">
   <div class="container">
-
-    <?php if(session()->getFlashdata('sukses')) : ?>
-      <div class="alert alert-success">
-        <?= session()->getFlashdata('sukses'); ?>
-      </div>
-    <?php endif; ?>
     <div class="row">
       <?php foreach($getProduk as $produk) : ?>
       <div class="col-md-3 mb-4">
