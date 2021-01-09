@@ -9,7 +9,7 @@
   <title><?= $title; ?></title>
 
   <!-- Icon -->
-  <link rel="icon" type="image/png" href="img/logo/icon.png">
+  <link rel="icon" type="image/png" href="<?= base_url(); ?>/img/logo/icon.png">
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="<?= base_url(); ?>/template/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
@@ -23,7 +23,7 @@
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand-md navbar-light navbar-white">
     <div class="container">
-      <a href="<?= base_url(); ?>/template/index3.html" class="navbar-brand">
+      <a href="<?= base_url('/pelanggan'); ?>" class="navbar-brand">
         <img src="<?= base_url(); ?>/img/logo/logo.png" alt="Toko Hikmah">
       </a>
       
@@ -58,16 +58,40 @@
       <!-- Right navbar links -->
       <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
         <!-- Notifications Menu -->
-        <?php if(session()->get('log_in') != true) { ?>
+        <?php if(session()->get('log_in') != true) { 
+          //mengambil isi dari keranjang
+          $keranjang = $cart->contents();
+          $jumlahItem = null;
+
+          //membuat perulangan isi keranjang
+          foreach($keranjang as $value){
+            $jumlahItem = $jumlahItem + $value['qty'];
+          }
+
+          //Melakukan pengecekan keranjang belanjan
+          if(empty($keranjang)){
+          ?>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" onclick="return alert('Keranjang belanja masih kosong. \nSilahkan lakukan pembelian barang untuk mengisi keranjang belanja anda ')"
+          href="<?= base_url('/pelanggan'); ?>">
             <i class="fa fa-shopping-cart"></i>
-            <!-- <span class="badge badge-danger badge-pill navbar-badge">15</span> -->
+            <span class="badge badge-danger badge-pill navbar-badge text-bold"><?= $jumlahItem; ?></span>
           </a>
         </li>
         <li class="nav-item">
-         
-          <?php if(session()->get('log_inp') != true){ ?>
+        <?php }else{?>
+        <li class="nav-item">
+          <a class="nav-link" href="<?= base_url('/pelanggan/kbelanja'); ?>">
+            <i class="fa fa-shopping-cart"></i>
+            <span class="badge badge-danger badge-pill navbar-badge text-bold"><?= $jumlahItem; ?></span>
+          </a>
+        </li>
+        <li class="nav-item">
+        <!-- Notifications Menu End -->
+        
+          <?php 
+        }
+          if(session()->get('log_inp') != true){ ?>
             <a href="<?= base_url('/Login/loginUser'); ?>" class="nav-link"><i class="fa fa-sign-in-alt"></i> Masuk</a>
           <?php }else{ ?>
             <a href="<?= base_url('/Login/logOutPelanggan'); ?>" class="nav-link"><i class="fa fa-sign-out-alt"></i> Keluar</a>

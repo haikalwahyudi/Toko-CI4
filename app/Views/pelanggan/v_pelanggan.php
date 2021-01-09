@@ -19,11 +19,24 @@
 <div class="content">
   <div class="container">
 
+    <?php if(session()->getFlashdata('sukses')) : ?>
+      <div class="alert alert-success">
+        <?= session()->getFlashdata('sukses'); ?>
+      </div>
+    <?php endif; ?>
     <div class="row">
-
       <?php foreach($getProduk as $produk) : ?>
       <div class="col-md-3 mb-4">
         <div class="card h-100 card-pelanggan">
+
+        <form action="<?= base_url('/pelanggan/addCart'); ?>" method="post">
+        <input type="hidden" name="id" value="<?= $produk['id_produk']; ?>">
+        <input type="hidden" name="name" value="<?= $produk['nama_produk']; ?>">
+        <input type="hidden" name="price" value="<?= $produk['harga_jual']; ?>">
+        <!-- Options -->
+        <input type="hidden" name="berat" value="<?= $produk['berat']; ?>">
+        <input type="hidden" name="foto_produk" value="<?= $produk['foto_produk']; ?>">
+
           <img src="<?= base_url('/img/'. $produk['foto_produk']); ?>" alt="<?= $produk['nama_produk']; ?>" class="img-pelanggan">
           <div class="card-body">
           <h2 class="card-title"><?= $produk['nama_produk']; ?></h2>
@@ -33,9 +46,11 @@
           <div class="card-footer text-center pfooter">
           <a href="#" class="btn text-center btn-sm btn-outline-primary">Detail</a>
           <?php if(session()->get('log_in') != true) : ?>
-          <a href="#" class="btn btn-primary text-center btn-sm mt-1 mb-1"><i class="fa fa-plus"></i> Keranjang</a>
+          <button type="submit" name="keranjang" class="btn btn-primary mt-1 mb-1 btn-sm">
+          <i class="fa fa-cart-plus"></i> Keranjang</button>
           <?php endif; ?>
           </div>
+        </form>
         </div>
       </div>
       <?php endforeach; ?>
