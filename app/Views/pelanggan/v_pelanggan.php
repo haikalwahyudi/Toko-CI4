@@ -38,7 +38,7 @@
           <p class="card-text text-center text-bold">Rp<?= number_format($produk['harga_jual']); ?></p>
           </div>
           <div class="card-footer text-center pfooter">
-          <a href="#" class="btn text-center btn-sm btn-outline-primary">Detail</a>
+          <a href="<?= base_url('/pelanggan/detailker/'.$produk['id_produk']); ?>" class="btn text-center btn-sm btn-outline-primary">Detail</a>
           <?php if(session()->get('log_in') != true) : ?>
           <button type="submit" name="keranjang" class="btn btn-primary mt-1 mb-1 btn-sm">
           <i class="fa fa-cart-plus"></i> Keranjang</button>

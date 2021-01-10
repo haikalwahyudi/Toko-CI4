@@ -24,20 +24,29 @@
   function pesan($warna,$pesan){
     const Toast = Swal.mixin({
       toast: true,
-      position: 'top-end',
+      position: 'top-start',
       showConfirmButton: false,
       timer: 3000
     });
 
     switch($warna){
       case "1":
-        toastr.success($pesan);
+        Toast.fire({
+        type: 'success',
+        title: $pesan
+      })
         break;
       case "2":
-        toastr.warning($pesan);
+        Toast.fire({
+        type: 'warning',
+        title: $pesan
+      })
         break;
       default:
-        toastr.error($pesan);
+        Toast.fire({
+        type: 'error',
+        title: $pesan
+      })
 
     }
       

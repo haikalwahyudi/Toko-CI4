@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="<?= base_url(); ?>/assets/css/style.css">
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Toastr -->
   <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/toastr/toastr.min.css">
 </head>

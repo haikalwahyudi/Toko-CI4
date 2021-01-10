@@ -51,6 +51,23 @@ class Pelanggan extends BaseController
             return redirect()->to(base_url('Pelanggan'));
     }
 
+    public function addCartdetail()
+    {
+        $cart = \Config\Services::cart();
+        $cart->insert(array(
+            'id'      => $this->request->getVar('id'),
+            'qty'     => 1,
+            'price'   => $this->request->getVar('price'),
+            'name'    => $this->request->getVar('name'),
+            'options' => array(
+                'berat' => $this->request->getVar('berat'),
+                'foto_produk' => $this->request->getVar('foto_produk')
+                )
+            ));
+            session()->setFlashdata('sukses','Barang berhasil dimasukkan ke keranjang belanja');
+            return redirect()->to(base_url('Pelanggan/detailker/'. $this->request->getVar('id')));
+    }
+
     public function clear()
     {
         $cart = \Config\Services::cart();
@@ -88,5 +105,16 @@ class Pelanggan extends BaseController
             }
             session()->setFlashdata('sukses','Keranjang berhasil diupdate');
             return redirect()->to(base_url('/pelanggan/kbelanja'));
+        }
+
+        public function detailker($id)
+        {
+            $data = [
+                'title'     => 'Detail Produk',
+                'getProduk' => $this->M_produk->ambilData($id)->getRow(),
+                'cart'      => \Config\services::cart()
+            ];
+
+            return view('/pelanggan/v_detailker',$data);
         }
     }
