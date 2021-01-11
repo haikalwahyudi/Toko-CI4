@@ -117,4 +117,13 @@ class Pelanggan extends BaseController
 
             return view('/pelanggan/v_detailker',$data);
         }
+
+        public function checkout()
+        {
+            $data = [
+                'title'     => 'Checkout',
+                'cart'      => \Config\Services::cart()
+            ];
+            return view('/pelanggan/v_checkout', $data);
+        }
     }

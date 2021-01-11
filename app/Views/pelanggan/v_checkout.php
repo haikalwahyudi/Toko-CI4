@@ -6,7 +6,7 @@
     <div class="container">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark"> Keranjang Belanja</h1>
+          <h1 class="m-0 text-dark">Halaman Checkout</h1>
         </div><!-- /.col -->
       <div class="col-sm-6">
     </div><!-- /.col -->
@@ -15,18 +15,18 @@
     </div>
     <!-- /.content-header -->
 
-<form action="<?= base_url('/pelanggan/updateCart'); ?>" method="post"> <!-- Form End -->
+<form action="<?= base_url('/pelanggan/addCheckout'); ?>" method="post"> <!-- Form End -->
 <!-- Main content -->
 <div class="content">
     <div class="container"><!-- container -->
 <!-- Infor -->
-<div class="callout callout-info">
+<!-- <div class="callout callout-info">
 <h5><i class="fa fa-info"></i> Informasi</h5>
     <p>
         Jika anda melakukan perubahan jumlah <strong>Qty</strong> pada keranjang belanja jangan lupa klik tombol <strong>Update</strong> untuk menyimpan perubahannya,
         jika anda tidak menekan tombol update maka perubahan pada <strong>Qty</strong> tidak akan tersimpan.
     </p>
-</div>
+</div> -->
 <!-- Infor End -->
 
 <?php 
@@ -44,7 +44,7 @@
     <div class="row">
     <div class="col-12">
         <h4>
-        <i class="fas fa-cart-plus"></i> Toko Hikmah.
+        <i class="fas fa-cart-plus"></i> Daftar Produk Yang Akan Dibeli.
         <small class="float-right">Date: <?= date('d/m/Y'); ?></small>
         </h4>
     </div>
@@ -60,10 +60,9 @@
             <th>No</th>
             <th>Produk</th>
             <th>Harga</th>
-            <th width="90px">Qty</th>
+            <th>Qty</th>
             <th>Gambar</th>
             <th>Subtotal</th>
-            <th>Opsi</th>
         </tr>
         </thead>
         <tbody>
@@ -76,12 +75,9 @@
             <td><?= $no++; ?></td>
             <td><?= $produk['name']; ?></td>
             <td>Rp. <?= number_format($produk['price']); ?></td>
-            <td><input type="number" name="qty<?= $i++; ?>" class="form-control form-control-sm" min="1" value="<?= $produk['qty']; ?>" width="100px"></td>
-            <td class="text-center"><img src="<?= base_url('/img/'. $produk['options']['foto_produk']); ?>" alt="foto Produk" width="30px"></td>
+            <td><?= $produk['qty']; ?></td>
+            <td><img src="<?= base_url('/img/'. $produk['options']['foto_produk']); ?>" alt="foto Produk" width="30px"></td>
             <td>Rp. <?= number_format($produk['subtotal']); ?></td>
-            <td class="text-center">
-                <a href="<?= base_url('/pelanggan/hapusKeranjangId/'.$produk['rowid']); ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
-            </td>
         </tr>
         <?php } ?>
         <tr class="text-bold">
@@ -96,25 +92,33 @@
     <!-- /.row -->
 
     <!-- this row will not appear when printing -->
-    <div class="row no-print">
-    <div class="col-12">
-        <button type="submit" class="btn btn-warning mt-1 mb-1"><i class="fa fa-save"></i> Update</button>
-        <div class="btn-group float-right">
-            <a href="<?= base_url('/pelanggan/clear'); ?>" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus Semua Keranjang</a>
-            <a href="<?= base_url('/pelanggan'); ?>" class="btn btn-primary"><i class="fa fa-cart-plus"></i> Belanja Lagi</a>
-            <?php 
-                if(session()->get('log_inp') == true){
-            ?>
-            <a href="<?= base_url('/pelanggan/checkout'); ?>" class="btn btn-success"><i class="fa fa-money-check"></i> Checkout</a>
-            <?php
-                }else{
-            ?>
-            <a href="<?= base_url('/login/loginuser'); ?>" onclick="return alert('Anda belum login \nSilahkan login terlebih dahulu untuk melanjutkan')" class="btn btn-success"><i class="fa fa-money-check"></i> Checkout</a>
-            <?php
-                }
-            ?>
+    <div class="row">
+        <div class="col-12">
+            <div class="mx-auto" style="width:40%">
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap</label>
+                    <input type="text" name="nama" class="form-control form-control-sm">
+                </div>
+                <div class="form-group">
+                    <label for="telpon">Telpon</label>
+                    <input type="text" name="telpon" class="form-control form-control-sm">
+                </div>
+                <div class="form-group">
+                    <label for="ongkir">Ongkir</label>
+                    <select name="ongkir" class="form-control form-control-sm">
+                        <option value="">-- Pilih Ongkir --</option>
+                        <option value="">Masbagik Rp. 10.000</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="Alamat">Alamat</label>
+                    <textarea name="alamat" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="col-6 offsite-6 float-right">
+                    <button type="submit" name="beli" class="btn btn-primary btn-block">Beli</button>
+                </div>
+            </div>
         </div>
-    </div>
     </div>
 </div>
 <!-- /.invoice -->

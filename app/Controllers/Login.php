@@ -16,7 +16,7 @@ class Login extends BaseController
         $this->M_pelanggan = new M_pelanggan();
         //$this->M_login = new M_login();
     }
-// ======== Login Admin =========
+// -------------------------------------- Login Admin --------------------------------------------
     public function index()
     {
         $data = [
@@ -127,7 +127,7 @@ class Login extends BaseController
         return redirect()->to('/Login/registrasiAdmin');
     }
 
-// ========== Login Pelanggan ========== 
+// ------------------------------------------- Login Pelanggan ------------------------------------------------- 
 
     public function loginUser()
     {
