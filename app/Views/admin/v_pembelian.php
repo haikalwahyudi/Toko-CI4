@@ -30,13 +30,10 @@
                 <thead>
                 <tr>
                     <th>No</th>
-                    <th>Pembeli</th>
                     <th>Produk</th>
                     <th>Tgl Pembelian</th>
                     <th>Ongkir</th>
                     <th>Total Pembelian</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,16 +42,10 @@
                 foreach($getPembelian as $pembelian) : ?>
                 <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= $pembelian['nama_pelanggan']; ?></td>
                     <td><?= $pembelian['nama_produk']; ?></td>
                     <td><?= $pembelian['tgl_pembelian']; ?></td>
                     <td><?= number_format($pembelian['tarif']); ?></td>
                     <td><?= number_format($pembelian['total_pembelian']); ?></td>
-                    <td><span class="badge badge-warning">Belum Lunas</span></td>
-                    <td>
-                    <a href="#" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
-                    <a href="<?= base_url('/admin/hapusPembelian/'.$pembelian['id_pembelian']); ?>" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></a>
-                    </td>
                 </tr>
                 <?php endforeach; ?>
                 </tbody>

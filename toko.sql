@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 12, 2021 at 01:14 AM
+-- Generation Time: Jan 12, 2021 at 07:54 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.3.25
 
@@ -45,6 +45,32 @@ INSERT INTO `admin` (`id_admin`, `nama_admin`, `email_admin`, `password`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `id_invoice` int(11) NOT NULL,
+  `nama_pem` varchar(150) NOT NULL,
+  `telpon` int(11) NOT NULL,
+  `tgl_beli` datetime NOT NULL,
+  `batas_bayar` datetime NOT NULL,
+  `alamat` text NOT NULL,
+  `aksi` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `invoice`
+--
+
+INSERT INTO `invoice` (`id_invoice`, `nama_pem`, `telpon`, `tgl_beli`, `batas_bayar`, `alamat`, `aksi`) VALUES
+(13, 'Haikal Wahyudi', 987654328, '2021-01-12 12:16:54', '2021-01-14 12:16:54', 'Masbagik', 0),
+(14, 'Haikal Wahyudi', 987654328, '2021-01-12 12:19:46', '2021-01-14 12:19:46', 'Masbagik', 0),
+(15, 'udin', 86876897, '2021-01-12 12:20:44', '2021-01-14 12:20:44', 'hjjkhjk', 0),
+(16, 'Hakizil Waridin', 2147483647, '2021-01-12 12:51:29', '2021-01-14 12:51:29', 'Penakak lauk desa masbagik timur kecamatan masbagik kabupaten lombok timur provinsi nusa tenggara barat', 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `kategori`
 --
 
@@ -62,7 +88,11 @@ INSERT INTO `kategori` (`id_kategori`, `kategori`) VALUES
 (4, 'Baju'),
 (11, 'Celana Peria'),
 (16, 'jghj'),
-(17, 'lkiuhhg');
+(17, 'lkiuhhg'),
+(18, 'ghj'),
+(19, 'aa'),
+(20, 'tt'),
+(21, 'birin');
 
 -- --------------------------------------------------------
 
@@ -106,7 +136,8 @@ CREATE TABLE `pelanggan` (
 --
 
 INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `email_pelanggan`, `password_pelanggan`, `telpon_pelanggan`) VALUES
-(1, 'Hakizil Waridi', 'hakizil@gmail.com', '$2y$10$8iNWrC9XKkHcnRUVnWp.zOuw0vinAzlQE7P9WvHFeCzznPSthKFU2', '098765654323');
+(1, 'Hakizil Waridi', 'hakizil@gmail.com', '$2y$10$8iNWrC9XKkHcnRUVnWp.zOuw0vinAzlQE7P9WvHFeCzznPSthKFU2', '098765654323'),
+(9, 'hh', 'hh@gmail.com', '$2y$10$/T/ygFjH7TLPDsfUnSTzmu21wcjN4Z8P.olY6FVhP45M1JgxYlwvW', '666666');
 
 -- --------------------------------------------------------
 
@@ -116,9 +147,10 @@ INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `email_pelanggan`, `p
 
 CREATE TABLE `pembelian` (
   `id_pembelian` int(11) NOT NULL,
-  `id_pelanggan` int(11) NOT NULL,
+  `id_invoice` int(11) NOT NULL,
   `id_produk` int(11) NOT NULL,
   `tgl_pembelian` date NOT NULL,
+  `harga` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `id_ongkir` int(11) NOT NULL,
   `total_pembelian` int(11) NOT NULL
@@ -128,9 +160,16 @@ CREATE TABLE `pembelian` (
 -- Dumping data for table `pembelian`
 --
 
-INSERT INTO `pembelian` (`id_pembelian`, `id_pelanggan`, `id_produk`, `tgl_pembelian`, `jumlah`, `id_ongkir`, `total_pembelian`) VALUES
-(1, 1, 46, '2020-12-21', 0, 1, 2500000),
-(2, 1, 55, '2021-01-03', 0, 4, 567);
+INSERT INTO `pembelian` (`id_pembelian`, `id_invoice`, `id_produk`, `tgl_pembelian`, `harga`, `jumlah`, `id_ongkir`, `total_pembelian`) VALUES
+(30, 13, 60, '2021-01-12', 4530000, 3, 2, 13590000),
+(31, 13, 65, '2021-01-12', 490000, 2, 2, 980000),
+(32, 14, 60, '2021-01-12', 4530000, 3, 2, 13590000),
+(33, 14, 65, '2021-01-12', 490000, 2, 2, 980000),
+(34, 15, 60, '2021-01-12', 4530000, 1, 3, 4530000),
+(35, 15, 65, '2021-01-12', 490000, 2, 3, 980000),
+(36, 15, 54, '2021-01-12', 82000, 1, 3, 82000),
+(37, 16, 65, '2021-01-12', 490000, 1, 2, 490000),
+(38, 16, 64, '2021-01-12', 399000, 1, 2, 399000);
 
 -- --------------------------------------------------------
 
@@ -188,6 +227,12 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id_admin`);
 
 --
+-- Indexes for table `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`id_invoice`);
+
+--
 -- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
@@ -228,10 +273,16 @@ ALTER TABLE `admin`
   MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
+-- AUTO_INCREMENT for table `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `ongkir`
@@ -243,13 +294,13 @@ ALTER TABLE `ongkir`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `produk`

@@ -8,6 +8,7 @@ use App\Models\M_ongkir;
 use App\Models\M_admin;
 use App\Models\M_pelanggan;
 use App\Models\M_pembelian;
+use App\Models\M_invoice;
 
 class Admin extends BaseController
 {
@@ -18,6 +19,7 @@ class Admin extends BaseController
     protected $M_admin;
     protected $M_pelanggan;
     protected $M_pembelian;
+    protected $M_invoice;
 
     public function __construct(){
         $this->M_produk = new M_produk();
@@ -26,6 +28,7 @@ class Admin extends BaseController
         $this->M_admin = new M_admin();
         $this->M_pelanggan = new M_pelanggan();
         $this->M_pembelian = new M_pembelian();
+        $this->M_invoice = new M_invoice();
     }
 //===================== Halaman Menu ========================
     public function index()
@@ -621,5 +624,14 @@ class Admin extends BaseController
             'title'         => 'Toast',
         ];
         return view('admin/v_toast', $data);
+    }
+//----------------------------------------------------- INVOICE --------------------------------------------------
+    public function invoice()
+    {
+         $data = [
+            'title'         => 'Invoice',
+            'getInvoice'    => $this->M_invoice->ambilData()
+        ];
+        return view('/admin/v_invoice', $data);
     }
 }

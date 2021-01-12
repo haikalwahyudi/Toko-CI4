@@ -90,29 +90,44 @@
     <!-- /.col -->
     </div>
     <!-- /.row -->
-
+    
     <!-- this row will not appear when printing -->
     <div class="row">
         <div class="col-12">
             <div class="mx-auto" style="width:40%">
                 <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" name="nama" class="form-control form-control-sm">
+                    <input type="text" name="nama"
+                    class="form-control form-control-sm <?= ($validation->hasError('nama') ? 'is-invalid' : ''); ?>">
+                    <div class="invalid-feedback">
+                        <?= $validation->getError('nama'); ?>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="telpon">Telpon</label>
-                    <input type="text" name="telpon" class="form-control form-control-sm">
+                    <input type="number" name="telpon" value="<?= old('telpon'); ?>" class="form-control form-control-sm <?= ($validation->hasError('telpon') ? 'is-invalid' : ''); ?>">
+                    <div class="invalid-feedback">
+                        <?= $validation->getError('telpon'); ?>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="ongkir">Ongkir</label>
-                    <select name="ongkir" class="form-control form-control-sm">
+                    <select name="ongkir" class="form-control form-control-sm <?= ($validation->hasError('ongkir') ? 'is-invalid' : ''); ?>">
                         <option value="">-- Pilih Ongkir --</option>
-                        <option value="">Masbagik Rp. 10.000</option>
+                        <?php foreach($getOngkir as $ongkir) : ?>
+                        <option value="<?= $ongkir['id_ongkir']; ?>"><?= $ongkir['nama_kota']; ?> : Rp. <?= number_format($ongkir['tarif']); ?></option>
+                        <?php endforeach; ?>
                     </select>
+                    <div class="invalid-feedback">
+                        <?= $validation->getError('ongkir'); ?>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="Alamat">Alamat</label>
-                    <textarea name="alamat" class="form-control" rows="3"></textarea>
+                    <textarea name="alamat" class="form-control <?= ($validation->hasError('alamat') ? 'is-invalid' : ''); ?>" rows="3"><?= old('alamat'); ?></textarea>
+                    <div class="invalid-feedback">
+                        <?= $validation->getError('alamat'); ?>
+                    </div>
                 </div>
                 <div class="col-6 offsite-6 float-right">
                     <button type="submit" name="beli" class="btn btn-primary btn-block">Beli</button>

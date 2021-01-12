@@ -2,16 +2,26 @@
 
 use App\Models\M_pelanggan;
 use App\Models\M_produk;
+use App\Models\M_ongkir;
+use App\Models\M_pembelian;
+use App\Models\M_invoice;
 
 class Pelanggan extends BaseController
 {
     protected $M_pelanggan;
+    protected $M_ongkir;
     protected $M_produk;
+    protected $M_pembelian;
+    protected $M_invoice;
 
     public function __construct()
     {
         $this->M_pelanggan = new M_pelanggan();
         $this->M_produk = new M_produk();
+        $this->M_ongkir = new M_ongkir();
+        $this->M_pembelian = new M_pembelian();
+        $this->M_invoice = new M_invoice();
+        
     }
 
     public function index()
@@ -122,8 +132,70 @@ class Pelanggan extends BaseController
         {
             $data = [
                 'title'     => 'Checkout',
-                'cart'      => \Config\Services::cart()
+                'cart'      => \Config\Services::cart(),
+                'getOngkir' => $this->M_ongkir->ambilData(),
+                'validation'    => \Config\Services::validation()
             ];
             return view('/pelanggan/v_checkout', $data);
+        }
+
+        public function addCheckout()
+        {
+            if(!$this->validate([
+                'nama'        => [
+                    'rules'     => 'required',
+                    'errors'    => [
+                        'required'  => 'Nama harus diisi'
+                    ]
+                ],
+                'telpon'        => [
+                    'rules'     => 'required',
+                    'errors'    => [
+                        'required'  => 'No telpon harus diisi'
+                    ]
+                ],
+                'ongkir'        => [
+                    'rules'     => 'required',
+                    'errors'    => [
+                        'required'  => 'Ongkir harus diisi'
+                    ]
+                ],
+                'alamat'        => [
+                    'rules'     => 'required',
+                    'errors'    => [
+                        'required'  => 'Alamat harus diisi'
+                    ]
+                ]
+            ])){
+                return redirect()->to(base_url('/pelanggan/checkout'))->withInput();
+            }
+            //Invoice
+            $this->M_invoice->simpan([
+                'nama_pem'      => $this->request->getVar('nama'),
+                'telpon'        => $this->request->getVar('telpon'),
+                'telpon'        => $this->request->getVar('telpon'),
+                'tgl_beli'      => date('Y-m-d H:i:s'),
+                'batas_bayar'   => date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'),
+                                    date('m'), date('d') + 2, date('Y'))),
+                'alamat'        => $this->request->getVar('alamat'),
+                'aksi'        => 0
+            ]);
+                //mengambil id invoice terakhir
+                $id_invoice = $this->M_invoice->insertID();
+
+            $cart = \Config\Services::cart();
+            foreach($cart->contents() as $value){
+                $this->M_pembelian->simpan([
+                    'id_invoice'      => $id_invoice,
+                    'id_produk'      => $value['id'],
+                    'tgl_pembelian'      => date('Y-m-d'),
+                    'harga'      => $value['price'],
+                    'jumlah'      => $value['qty'],
+                    'id_ongkir'      => $this->request->getVar('ongkir'),
+                    'total_pembelian'      => $value['subtotal']
+                ]);
+            }
+            session()->setFlashdata('sukses','Pembelian Berhasil');
+            return redirect()->to(base_url('/pelanggan/berhasil'));
         }
     }

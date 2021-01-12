@@ -10,7 +10,7 @@ class M_pembelian extends Model
         if($id_pembelian === false){
             // return $this->findAll();
             return $this->db->table($this->table)
-            ->join('pelanggan','pelanggan.id_pelanggan = pembelian.id_pelanggan')
+            ->join('invoice','invoice.id_invoice = pembelian.id_invoice')
             ->join('produk','produk.id_produk = pembelian.id_produk')
             ->join('ongkir','ongkir.id_ongkir = pembelian.id_ongkir')
             ->get()->getResultArray();
