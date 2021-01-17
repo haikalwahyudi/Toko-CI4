@@ -18,6 +18,20 @@ class M_pembelian extends Model
         return $this->getWhere(['id_pembelian' => $id_pembelian]);
     }
 
+    public function ambilIdInvoice($idInvoice)
+    {
+        return $this->db->table('invoice')
+        ->getWhere(['id_invoice' => $idInvoice]);
+    }
+
+    public function ambilIdPembelian($idInvoice)
+    {
+        return $this->db->table('pembelian')
+        ->join('produk','produk.id_produk = pembelian.id_produk')
+        ->join('ongkir','ongkir.id_ongkir = pembelian.id_ongkir')
+        ->getWhere(['id_invoice' => $idInvoice]);
+    }
+
     public function simpan($data)
     {
         $simpan = $this->db->table($this->table);

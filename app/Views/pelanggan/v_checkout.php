@@ -19,15 +19,6 @@
 <!-- Main content -->
 <div class="content">
     <div class="container"><!-- container -->
-<!-- Infor -->
-<!-- <div class="callout callout-info">
-<h5><i class="fa fa-info"></i> Informasi</h5>
-    <p>
-        Jika anda melakukan perubahan jumlah <strong>Qty</strong> pada keranjang belanja jangan lupa klik tombol <strong>Update</strong> untuk menyimpan perubahannya,
-        jika anda tidak menekan tombol update maka perubahan pada <strong>Qty</strong> tidak akan tersimpan.
-    </p>
-</div> -->
-<!-- Infor End -->
 
 <?php 
     $keranjang = $cart->contents();
@@ -97,7 +88,7 @@
             <div class="mx-auto" style="width:40%">
                 <div class="form-group">
                     <label for="nama">Nama Lengkap</label>
-                    <input type="text" name="nama"
+                    <input type="text" name="nama" value="<?= old('nama'); ?>"
                     class="form-control form-control-sm <?= ($validation->hasError('nama') ? 'is-invalid' : ''); ?>">
                     <div class="invalid-feedback">
                         <?= $validation->getError('nama'); ?>
@@ -112,7 +103,7 @@
                 </div>
                 <div class="form-group">
                     <label for="ongkir">Ongkir</label>
-                    <select name="ongkir" class="form-control form-control-sm <?= ($validation->hasError('ongkir') ? 'is-invalid' : ''); ?>">
+                    <select name="ongkir" class="form-control form-control-sm <?= ($validation->hasError('ongkir') ? 'is-invalid' : ''); ?>" value="<?= old('ongkir'); ?>">
                         <option value="">-- Pilih Ongkir --</option>
                         <?php foreach($getOngkir as $ongkir) : ?>
                         <option value="<?= $ongkir['id_ongkir']; ?>"><?= $ongkir['nama_kota']; ?> : Rp. <?= number_format($ongkir['tarif']); ?></option>
@@ -123,7 +114,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Alamat">Alamat</label>
+                    <label for="Alamat">Alamat Pengiriman</label>
                     <textarea name="alamat" class="form-control <?= ($validation->hasError('alamat') ? 'is-invalid' : ''); ?>" rows="3"><?= old('alamat'); ?></textarea>
                     <div class="invalid-feedback">
                         <?= $validation->getError('alamat'); ?>

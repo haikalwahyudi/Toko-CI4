@@ -47,8 +47,8 @@
                     <td><?= $invoice['alamat']; ?></td>
                     <td><div class="badge badge-warning">Belum Lunas</div></td>
                     <td>
-                      <a href="" class="btn btn-primary btn-sm">Detail</a>
-                      <a href="" class="btn btn-success btn-sm"><i class="fa fa-check"></i></a>
+                      <a href="<?= base_url('/admin/detailInvoice/'.$invoice['id_invoice']); ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
+                      <a href="" class="btn btn-success btn-sm mt-1 mb-1"><i class="fa fa-check"></i></a>
                       <a href="" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                     </td>
                 </tr>

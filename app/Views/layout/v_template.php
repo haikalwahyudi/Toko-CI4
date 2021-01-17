@@ -52,10 +52,10 @@
           Halo, <?= session()->get('nama_admin'); ?> &nbsp;&nbsp;&nbsp;<i class="far fa-user"></i>&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-left"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <a href="#" class="dropdown-item">
+          <a href="#" class="dropdown-item"><i class="fa fa-user"></i>
           Profile
           </a>
-          <a href="<?= base_url('/Login/logoutAdmin'); ?>" class="dropdown-item">
+          <a href="<?= base_url('/Login/logoutAdmin'); ?>" class="dropdown-item"><i class="fa fa-sign-out-alt"></i>
           Logout
           </a>
         </div>

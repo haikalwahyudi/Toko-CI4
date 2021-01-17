@@ -139,6 +139,16 @@ class Pelanggan extends BaseController
             return view('/pelanggan/v_checkout', $data);
         }
 
+        public function berhasil()
+        {
+            $data = [
+                'cart'      => \Config\Services::cart(),
+                'title'     => 'Berhasil'
+            ];
+
+            return view('/pelanggan/v_berhasil', $data);
+        }
+
         public function addCheckout()
         {
             if(!$this->validate([
@@ -195,7 +205,8 @@ class Pelanggan extends BaseController
                     'total_pembelian'      => $value['subtotal']
                 ]);
             }
-            session()->setFlashdata('sukses','Pembelian Berhasil');
+            $cart->destroy();
+            session()->setFlashdata('sukses','Pembelian Berhasil, silahkan melakukan konfirmasi untuk pembayaran melalui tautan dibawah');
             return redirect()->to(base_url('/pelanggan/berhasil'));
         }
     }

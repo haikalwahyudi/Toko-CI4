@@ -625,7 +625,7 @@ class Admin extends BaseController
         ];
         return view('admin/v_toast', $data);
     }
-//----------------------------------------------------- INVOICE --------------------------------------------------
+//--------------------------------- INVOICE -------------------------------------------
     public function invoice()
     {
          $data = [
@@ -633,5 +633,16 @@ class Admin extends BaseController
             'getInvoice'    => $this->M_invoice->ambilData()
         ];
         return view('/admin/v_invoice', $data);
+    }
+
+    public function detailInvoice($id_invoice)
+    {
+        $data = [
+            'title'         => 'Detail Invoice',
+            'idInvoice'     => $this->M_pembelian->ambilIdInvoice($id_invoice)->getRow(),
+            'idPembelian'   => $this->M_pembelian->ambilIdPembelian($id_invoice)->getResultArray()
+        ];
+
+        return view('/admin/v_detailinvoice', $data);
     }
 }
