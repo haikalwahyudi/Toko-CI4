@@ -19,6 +19,7 @@ class M_invoice extends Model
     public function ambilIdPembeli($idPembeli)
     {
         return $this->db->table($this->table)
+        ->orderBy('id_invoice','DESC')
         ->getWhere(['id_pembeli' => $idPembeli]);
     }
 
