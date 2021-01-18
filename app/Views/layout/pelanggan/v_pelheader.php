@@ -45,9 +45,14 @@
           <li class="nav-item">
             <a href="#" class="nav-link">Contact</a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">Semua Transaksi</a>
-          </li>
+          <?php if(session()->get('log_inp') == true) : ?>
+            <li class="nav-item">
+              <a href="<?= base_url('/pelanggan/semuaTransaksi'); ?>" class="nav-link">Semua Transaksi</a>
+            </li>
+            <li class="nav-item">
+              <a href="" class="nav-link">Info Pembayaran</a>
+            </li>
+        <?php endif; ?>
         </ul>
 
         <!-- SEARCH FORM -->

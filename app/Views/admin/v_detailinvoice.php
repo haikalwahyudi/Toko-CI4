@@ -5,13 +5,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Invoice Pemesanan Produk</h1>
+            <h1>Detail Invoice Pemesanan Produk</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?= base_url('/admin/index') ?>">Home</a></li>
               <li class="breadcrumb-item"><a href="<?= base_url('/admin/invoice') ?>">Invoice</a></li>
-              <li class="breadcrumb-item active">Invoice Pembelian Produk</li>
+              <li class="breadcrumb-item active">Detail Invoice Pemesanan Produk</li>
             </ol>
           </div>
         </div>
@@ -44,7 +44,8 @@
             $no=1;
             $total=0;
             foreach ($idPembelian as $pembelian) {
-              $total = $pembelian['total_pembelian'] + $total = $pembelian['total_pembelian']
+              $subtotal = $pembelian['tarif'] + $pembelian['total_pembelian'];
+              $total+=$subtotal;
             ?>
 
             <tr>
@@ -54,12 +55,12 @@
               <td><?= number_format($pembelian['harga']); ?></td>
               <td><?= $pembelian['jumlah'] ?></td>
               <td><?= number_format($pembelian['tarif']); ?></td>
-              <td><?= number_format($pembelian['total_pembelian']); ?></td>
+              <td><?= number_format($subtotal); ?></td>
             </tr>
           <?php } ?>
             <tr>
-              <th colspan="6" class="text-center">Total</th>
-              <td><?= number_format($total); ?></td>
+              <th colspan="5" class="text-center">Total</th>
+              <th colspan="2">Rp. <?= number_format($total); ?></th>
             </tr>
           </table>
           </div>

@@ -645,4 +645,20 @@ class Admin extends BaseController
 
         return view('/admin/v_detailinvoice', $data);
     }
+
+    public function updateStatus($id_invoice)
+    {
+        $this->M_invoice->ubah([
+            'aksi'      => true
+        ], $id_invoice);
+        return redirect()->to(base_url('/admin/invoice'));
+    }
+
+    public function hapusInvoice($id_invoice)
+    {
+        $this->M_invoice->hapus($id_invoice);
+        $this->M_invoice->hapusPesanan($id_invoice);
+        session()->setFlashdata('sukses', 'Pemesanan Dibatalkan');
+        return redirect()->to(base_url('/admin/invoice'));
+    }
 }

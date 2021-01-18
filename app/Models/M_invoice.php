@@ -5,12 +5,21 @@ use CodeIgniter\Model;
 class M_invoice extends Model
 {
     protected $table = 'invoice';
-    public function ambilData($id = false)
+    public function ambilData($id_invoice = false)
     {
-        if($id === false){
-            return $this->findAll();
+        if($id_invoice === false){
+            // return $this->findAll();
+            return $this->db->table($this->table)
+            ->orderBy('id_invoice','DESC')
+            ->get()->getResultArray();
         }
-        return $this->getWhere(['id' => $id]);
+        return $this->getWhere(['id_invoice' => $id_invoice]);
+    }
+
+    public function ambilIdPembeli($idPembeli)
+    {
+        return $this->db->table($this->table)
+        ->getWhere(['id_pembeli' => $idPembeli]);
     }
 
     public function simpan($data)
@@ -18,15 +27,20 @@ class M_invoice extends Model
         $simpan = $this->db->table($this->table);
         return $simpan->insert($data);
     }
-    public function hapus($id)
+    public function hapus($id_invoice)
     {
         $hapus = $this->db->table($this->table);
-        return $hapus->delete(['id' => $id]);
+        return $hapus->delete(['id_invoice' => $id_invoice]);
     }
-    public function ubah($data, $id)
+    public function hapusPesanan($id_invoice)
+    {
+        $hapus = $this->db->table('pembelian');
+        return $hapus->delete(['id_invoice' => $id_invoice]);
+    }
+    public function ubah($data, $id_invoice)
     {
         $ubah = $this->db->table($this->table);
-        $ubah->where('id', $id);
+        $ubah->where('id_invoice', $id_invoice);
         return $ubah->update($data);
     }
 }

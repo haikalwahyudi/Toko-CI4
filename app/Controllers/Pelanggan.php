@@ -139,11 +139,12 @@ class Pelanggan extends BaseController
             return view('/pelanggan/v_checkout', $data);
         }
 
-        public function berhasil()
+        public function berhasil($idInvoice)
         {
             $data = [
                 'cart'      => \Config\Services::cart(),
-                'title'     => 'Berhasil'
+                'title'     => 'Berhasil',
+                'idInvoice' => $this->M_invoice->ambilData($idInvoice)->getRow()
             ];
 
             return view('/pelanggan/v_berhasil', $data);
@@ -181,6 +182,7 @@ class Pelanggan extends BaseController
             }
             //Invoice
             $this->M_invoice->simpan([
+                'id_pembeli'    => session()->get('id_pelanggan'),
                 'nama_pem'      => $this->request->getVar('nama'),
                 'telpon'        => $this->request->getVar('telpon'),
                 'telpon'        => $this->request->getVar('telpon'),
@@ -207,6 +209,16 @@ class Pelanggan extends BaseController
             }
             $cart->destroy();
             session()->setFlashdata('sukses','Pembelian Berhasil, silahkan melakukan konfirmasi untuk pembayaran melalui tautan dibawah');
-            return redirect()->to(base_url('/pelanggan/berhasil'));
+            return redirect()->to(base_url('/pelanggan/berhasil/'.$id_invoice));
+        }
+//---------------------------------- Transaksi --------------------------------------------------
+        public function semuaTransaksi()
+        {
+            $data = [
+                'title'         => 'Transaksi',
+                'cart'          => \Config\Services::cart(),
+                'getInvoice'    => $this->M_invoice->ambilIdPembeli(session()->get('id_pelanggan'))->getResultArray()
+            ];
+            return view('/pelanggan/v_transaksi', $data);
         }
     }
