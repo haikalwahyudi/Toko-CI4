@@ -44,4 +44,20 @@ class M_invoice extends Model
         $ubah->where('id_invoice', $id_invoice);
         return $ubah->update($data);
     }
+
+    public function jumlahPesanan()
+    {
+        $this->select('invoice.*');
+        $this->where(array('aksi' => 1));
+        $query = $this->get();
+        return $query->getResultArray();
+    }
+
+    public function pesananMasuk()
+    {
+        $this->select('invoice.*');
+        $this->where(array('aksi' => 0));
+        $query = $this->get();
+        return $query->getResultArray();
+    }
 }

@@ -35,4 +35,9 @@ class M_Produk extends Model
         $ubah->where('id_produk', $id);
         return $ubah->update($data);
     }
+
+    public function jumlahProduk()
+    {
+        return $this->db->table($this->table)->countAll();
+    }
 }

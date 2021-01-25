@@ -33,8 +33,22 @@ class Admin extends BaseController
 //===================== Halaman Menu ========================
     public function index()
     {
+        $jumlahKonfir = $this->M_invoice->jumlahPesanan();
+        $jumlahPsnMasuk = $this->M_invoice->pesananMasuk();
+        $jp=0;
+        $jpm=0;
+        foreach ($jumlahKonfir as $j) {
+            $jp++;
+        }
+        foreach ($jumlahPsnMasuk as $jmlpsm) {
+            $jpm++;
+        }
+
         $data = [
-            'title' => 'Beranda'
+            'title'         => 'Beranda',
+            'produk'        => $this->M_produk->jumlahProduk(),
+            'jmlhPesanan'   => $jp,
+            'jmlPsnMasuk'   => $jpm
         ];
         return view('admin/v_home', $data);
     }

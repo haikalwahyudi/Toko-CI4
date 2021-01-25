@@ -217,7 +217,8 @@ class Pelanggan extends BaseController
             $data = [
                 'title'         => 'Transaksi',
                 'cart'          => \Config\Services::cart(),
-                'getInvoice'    => $this->M_invoice->ambilIdPembeli(session()->get('id_pelanggan'))->getResultArray()
+                'getInvoice'    => $this->M_invoice->ambilIdPembeli(session()->get('id_pelanggan'))->getResultArray(),
+                'cekTransaksi'  => $this->M_invoice->ambilIdPembeli(session()->get('id_pelanggan'))->getRow()
             ];
             return view('/pelanggan/v_transaksi', $data);
         }

@@ -5,10 +5,16 @@
   <div class="content-header">
     <div class="container">
       <div class="row mb-2">
-        <div class="col-sm-6">
+        <div class="col-sm-3">
           <h1 class="m-0 text-dark"> Daftar Produk</h1>
         </div><!-- /.col -->
-      <div class="col-sm-6">
+      <div class="col-sm-9">
+        <a href="" class="btn btn-outline-warning">Barang Elektronik</a>
+        <a href="" class="btn btn-outline-warning">Baju</a>
+        <a href="" class="btn btn-outline-warning">Celana</a>
+        <a href="" class="btn btn-outline-warning">Sepatu</a>
+        <a href="" class="btn btn-outline-warning">Jaket</a>
+        <a href="" class="btn btn-outline-warning">Lainnya..</a>
     </div><!-- /.col -->
   </div><!-- /.row -->
   </div><!-- /.container-fluid -->

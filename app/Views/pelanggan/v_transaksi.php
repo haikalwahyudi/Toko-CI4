@@ -22,6 +22,11 @@
         <div class="row">
             <div class="col-md-7 mx-auto">
 
+                <?php
+                // dd($cekTransaksi);
+                if($cekTransaksi){
+                    if($cekTransaksi->id_pembeli == session()->get('id_pelanggan')){
+                ?>
                 <!-- card -->
                 <?php foreach ($getInvoice as $Invoice) {?>
                 <div class="card">
@@ -42,17 +47,22 @@
                                 <?= $Invoice['tgl_beli'] ?>
                             </div>    
                         </div>
+                        <hr>
                         <table id="example1" class="table table-sm table-striped mt-3">
                             <tbody>
                                 <tr>
                                     <th>Status</th>
-                                    <td><div class="badge badge-warning">Sedang Diprases</div></td>
+                                    <?php if($Invoice['aksi'] != true){ ?>
+                                    <td><span class="badge badge-warning">Sedang Diprases</span></td>
+                                <?php }else{ ?>
+                                    <td><span class="badge badge-success">Berhasil</span></td>
+                                <?php } ?>
                                 </tr>
                                 <tr>
                                     <th colspan="2">Toko Hikmah Masbagik</th>
                                 </tr>
                                 <tr>
-                                    <th>Total</th>
+                                    <th>Total Belanja</th>
                                     <td>Rp. 20.000</td>
                                 </tr>
                             </tbody>
@@ -60,14 +70,25 @@
                     </div>
                 </div>
                 <!-- Card End -->
-            <?php } ?>
-
+            <?php
+            }
+        }
+            }else{
+            ?>
+            
+            <div class="alert alert-danger text-center">
+                <h3>Opps, Belum ada transaksi yang dilakukan</h3>
             </div>
-        </div>
+            <?php } ?>
+            </div>
 
+        </div>
+        
     </div><!-- Container End -->
+
 </div>
 <!-- Content End -->
+
 
 </div>
 <!-- /.content-wrapper -->
