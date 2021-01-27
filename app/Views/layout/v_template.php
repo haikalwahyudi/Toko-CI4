@@ -55,7 +55,7 @@
           <a href="#" class="dropdown-item"><i class="fa fa-user"></i>
           Profile
           </a>
-          <a href="<?= base_url('/Login/logoutAdmin'); ?>" class="dropdown-item"><i class="fa fa-sign-out-alt"></i>
+          <a href="<?= base_url('/Login/logout'); ?>" class="dropdown-item"><i class="fa fa-sign-out-alt"></i>
           Logout
           </a>
         </div>

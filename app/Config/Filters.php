@@ -25,7 +25,7 @@ class Filters extends BaseConfig
 					]],
 			'filterPelanggan'	=> [
 				'except' => [
-					'Login/loginUser', 'Login/*',
+					'Login', 'Login/*',
 					'pelanggan', 'pelanggan/*'
 					]
 				]

@@ -87,6 +87,15 @@
             </a>
         </li>
 
+        <li class="nav-item">
+            <a href="<?= base_url('/admin/database'); ?>" class="nav-link">
+            <i class="nav-icon fas fa-database"></i>
+                <p>
+                Backup & Restore DB
+                </p>
+            </a>
+        </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

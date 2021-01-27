@@ -102,9 +102,9 @@
           <?php 
         }
           if(session()->get('log_inp') != true){ ?>
-            <a href="<?= base_url('/Login/loginUser'); ?>" class="nav-link"><i class="fa fa-sign-in-alt"></i> Masuk</a>
+            <a href="<?= base_url('/Login'); ?>" class="nav-link"><i class="fa fa-sign-in-alt"></i> Masuk</a>
           <?php }else{ ?>
-            <a href="<?= base_url('/Login/logOutPelanggan'); ?>" class="nav-link"><i class="fa fa-sign-out-alt"></i> Keluar</a>
+            <a href="<?= base_url('/Login/logout'); ?>" class="nav-link"><i class="fa fa-sign-out-alt"></i> Keluar</a>
           <?php 
             }
         }
