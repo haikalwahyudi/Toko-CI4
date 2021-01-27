@@ -313,7 +313,7 @@ class Admin extends BaseController
         $this->M_admin->simpan([
             'nama_admin'      => $this->request->getVar('namaAdmin'),
             'email_admin'  => $this->request->getVar('email'),
-            'password'  => $this->request->getVar('password')
+            'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT) 
         ]);
         session()->setFlashdata('sukses', 'Data berhasil disimpan');
         return redirect()->to('/admin/tambahAdmin');

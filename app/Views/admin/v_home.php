@@ -22,31 +22,35 @@
 
       <div class="row">
           <div class="col-12 col-sm-6 col-md-4">
-            <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-archive"></i></span>
+            <a href="<?= base_url('/admin/produk') ?>" class="text-dark">
+              <div class="info-box">
+                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-archive"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Jumlah Produk</span>
-                <span class="info-box-number">
-                  <h4><?= $produk; ?></h4>
-                </span>
+                <div class="info-box-content">
+                  <span class="info-box-text">Jumlah Produk</span>
+                  <span class="info-box-number">
+                    <h4><?= $produk; ?></h4>
+                  </span>
+                </div>
+                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box-content -->
-            </div>
+            </a>
             <!-- /.info-box -->
           </div>
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-4">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
+            <a href="<?= base_url('admin/invoice') ?>" class="text-dark">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Pesanan Masuk</span>
-                <h4><?= $jmlPsnMasuk ?></h4>
+                <div class="info-box-content">
+                  <span class="info-box-text">Pesanan Masuk</span>
+                  <h4><?= $jmlPsnMasuk ?></h4>
+                </div>
+                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
+              <!-- /.info-box -->
+            </a>
           </div>
           <!-- /.col -->
 
@@ -54,16 +58,18 @@
           <div class="clearfix hidden-md-up"></div>
 
           <div class="col-12 col-sm-6 col-md-4">
-            <div class="info-box mb-3">
-              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-thumbs-up"></i></span>
+            <a href="<?= base_url('admin/invoice') ?>" class="text-dark">
+              <div class="info-box mb-3">
+                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
-              <div class="info-box-content">
-                <span class="info-box-text">Sudah Dikonfirmasi</span>
-                <h4><?= $jmlhPesanan ?></h4>
+                <div class="info-box-content">
+                  <span class="info-box-text">Sudah Dikonfirmasi</span>
+                  <h4><?= $jmlhPesanan ?></h4>
+                </div>
+                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
+              <!-- /.info-box -->
+            </a>
           </div>
           <!-- /.col -->
         </div>

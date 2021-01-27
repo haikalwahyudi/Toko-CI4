@@ -1,6 +1,6 @@
  <!-- Main Footer -->
 <footer class="main-footer text-center">
-    <strong>Copyright &copy; <?= date('Y'); ?></strong> Haikal Wahyudi.
+    <strong>Copyright &copy; <?= date('Y'); ?></strong> Anak Desa.
 </footer>
 </div>
 <!-- ./wrapper -->

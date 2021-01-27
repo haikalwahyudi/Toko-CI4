@@ -65,10 +65,6 @@
           <!-- /.col -->
         </div>
       </form>
-
-      <p class="mt-3">
-        Belum punya akun? Ayo <a href="/Login/registrasiAdmin" class="text-bold">Daftar</a> 
-      </p>
     </div>
     <!-- /.login-card-body -->
   </div>

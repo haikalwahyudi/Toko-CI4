@@ -72,7 +72,7 @@
         
         <li class="nav-item">
             <a href="<?= base_url('/admin/kategori'); ?>" class="nav-link">
-            <i class="nav-icon fas fa-braille"></i>
+            <i class="nav-icon fas fa-cookie"></i>
                 <p>
                 Kategori
                 </p>
@@ -80,7 +80,7 @@
         </li>
         <li class="nav-item">
             <a href="<?= base_url('/admin/ongkir'); ?>" class="nav-link">
-            <i class="nav-icon fas fa-money-bill-wave"></i>
+            <i class="nav-icon fas fa-money-bill-alt"></i>
                 <p>
                 Ongkir
                 </p>
