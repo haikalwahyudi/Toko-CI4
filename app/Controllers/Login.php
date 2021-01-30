@@ -62,7 +62,7 @@ class Login extends BaseController
                 ]
             ]
         ])){
-            return redirect()->to(base_url('/Login/loginUser'))->withInput();
+            return redirect()->to(base_url('/Login'))->withInput();
         }
         $email      = $this->request->getVar('email');
         $password   = $this->request->getVar('password');
@@ -93,11 +93,11 @@ class Login extends BaseController
                     return redirect()->to(base_url('/pelanggan'));
                 }else{
                     session()->setFlashdata('gagal','Password anda salah');
-                    return redirect()->to('/Login/loginUser')->withInput();
+                    return redirect()->to('/Login')->withInput();
                 }
             }else{
                 session()->setFlashdata('gagal','Email anda salah');
-                return redirect()->to('/Login/loginUser')->withInput();
+                return redirect()->to('/Login')->withInput();
             }
         }else{
             //membuat data session
