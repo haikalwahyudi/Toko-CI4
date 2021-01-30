@@ -37,15 +37,17 @@
               <th>Tanggal Pembelian</th>
               <th>Harga Satuan</th>
               <th>Jumlah</th>
-              <th>Ongkir</th>
               <th>Sub Total</th>
             </tr>
             <?php 
             $no=1;
-            $total=0;
+            $subtotal=0;
             foreach ($idPembelian as $pembelian) {
-              $subtotal = $pembelian['tarif'] + $pembelian['total_pembelian'];
-              $total+=$subtotal;
+              // $subtotal = $pembelian['tarif'] + $pembelian['total_pembelian'];
+              // $total+=$subtotal;
+
+              // $subtotal = $pembelian['total_pembelian'] + $pembelian['total_pembelian'];
+              $subtotal+=$pembelian['total_pembelian'];
             ?>
 
             <tr>
@@ -54,16 +56,33 @@
               <td><?= $pembelian['tgl_pembelian'] ?></td>
               <td><?= number_format($pembelian['harga']); ?></td>
               <td><?= $pembelian['jumlah'] ?></td>
-              <td><?= number_format($pembelian['tarif']); ?></td>
-              <td><?= number_format($subtotal); ?></td>
+              <td><?= number_format($pembelian['total_pembelian']); ?></td>
             </tr>
           <?php } ?>
-            <tr>
-              <th colspan="5" class="text-center">Total</th>
-              <th colspan="2">Rp. <?= number_format($total); ?></th>
-            </tr>
           </table>
+          <div class="row">
+            <div class="col-md-6 offset-md-6 float-right">
+
+          <div class="table-responsive">
+            <table class="table mt-3">
+              <tr>
+                <th style="width:50%">Subtotal:</th>
+                <td>Rp<?= number_format($subtotal); ?></td>
+              </tr>
+              <tr>
+                <th>Ongkir</th>
+                <td>Rp<?= number_format($pembelian['tarif']); ?></td>
+              </tr>
+              <tr>
+                <th>Total:</th>
+                <td>Rp<?= number_format($subtotal + $pembelian['tarif']); ?></td>
+              </tr>
+            </table>
           </div>
         </div>
-    </section>
+        <!-- /.col -->
+          </div>
+          </div>
+        </div>
+    </section><br>
 <?= $this->endSection(); ?>
