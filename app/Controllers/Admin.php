@@ -676,4 +676,15 @@ class Admin extends BaseController
         session()->setFlashdata('sukses', 'Pemesanan Dibatalkan');
         return redirect()->to(base_url('/admin/invoice'));
     }
+
+    public function cetakDetailInvoice($id_invoice)
+    {
+        $data = [
+            'title'         => 'Detail Invoice',
+            'idInvoice'     => $this->M_pembelian->ambilIdInvoice($id_invoice)->getRow(),
+            'idPembelian'   => $this->M_pembelian->ambilIdPembelian($id_invoice)->getResultArray()
+        ];
+
+        return view('/admin/v_cetakInvoice', $data);
+    }
 }

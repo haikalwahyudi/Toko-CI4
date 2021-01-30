@@ -181,10 +181,10 @@ class Pelanggan extends BaseController
                 return redirect()->to(base_url('/pelanggan/checkout'))->withInput();
             }
             //Invoice
+            $no=1;
             $this->M_invoice->simpan([
                 'id_pembeli'    => session()->get('id_pelanggan'),
                 'nama_pem'      => $this->request->getVar('nama'),
-                'telpon'        => $this->request->getVar('telpon'),
                 'telpon'        => $this->request->getVar('telpon'),
                 'tgl_beli'      => date('Y-m-d H:i:s'),
                 'batas_bayar'   => date('Y-m-d H:i:s', mktime(date('H'), date('i'), date('s'),

@@ -27,7 +27,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th width="30px">No Invoice</th>
+                    <th width="30px">No</th>
+                    <th>No.Invoice</th>
                     <th>Nama Pemesan</th>
                     <th>No Telpon</th>
                     <th>Tgl Pemesanan</th>
@@ -43,6 +44,7 @@
                 foreach($getInvoice as $invoice) : ?>
                 <tr>
                     <td><?= $no++; ?></td>
+                    <td><?= 'INV/'.$invoice['id_invoice']; ?></td>
                     <td><?= $invoice['nama_pem']; ?></td>
                     <td><?= $invoice['telpon']; ?></td>
                     <td><?= $invoice['tgl_beli']; ?></td>
@@ -53,7 +55,7 @@
                   <?php }else{ ?>
                     <td><div class="badge badge-success">Lunas</div></td>
                   <?php } ?>
-                    <td>
+                    <td width="30px">
                       <a href="<?= base_url('/admin/detailInvoice/'.$invoice['id_invoice']); ?>" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i></a>
 
                       <?php if($invoice['aksi'] != true){ ?>

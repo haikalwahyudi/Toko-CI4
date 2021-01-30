@@ -47,7 +47,7 @@
       <tr>
         <td><h5>Nomor Invoice Pembelian </h5></td>
         <td><h5>:</h5></td>
-        <td><h5><div class="badge badge-success"><?= $idInvoice->id_invoice; ?></div></h5></td>
+        <td><h5><div class="badge badge-success"><?= 'INV/'.$idInvoice->id_invoice; ?></div></h5></td>
       </tr>
       <tr>
         <td><h5>Nama </h5></td>

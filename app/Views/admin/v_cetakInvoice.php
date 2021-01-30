@@ -1,27 +1,26 @@
-<?= $this->extend('layout/v_template'); ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?= $title; ?></title>
 
-<?= $this->section('isi'); ?>
-<section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>Detail Invoice Pemesanan Produk</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?= base_url('/admin/index') ?>">Home</a></li>
-              <li class="breadcrumb-item"><a href="<?= base_url('/admin/invoice') ?>">Invoice</a></li>
-              <li class="breadcrumb-item active">Detail Invoice Pemesanan Produk</li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
+  <link rel="stylesheet" href="<?= base_url() ?>/template/assets/css/adminlte.min.css">
 
+
+  <!-- SweetAlert2 -->
+  <!-- <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css"> -->
+  <!-- Toastr -->
+  <link rel="stylesheet" href="<?= base_url() ?>/template/plugins/toastr/toastr.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+<!-- Site wrapper -->
+<div class="container-fluid">
+
+<br>
     <!-- Main content -->
     <section class="content">
-        <div class="card">
-          <div class="card-body">
             <div class="row">
               <div class="col-md-9">
                 <h4>
@@ -54,14 +53,6 @@
                     <td><?= $idInvoice->tgl_beli; ?></td>
                   </tr>
                 </table>
-              </div>
-              <div class="col-6">
-                <?php
-                  if($idInvoice->aksi == 1){
-                ?>
-                <a href="<?= base_url('/admin/cetakDetailInvoice/'.$idInvoice->id_invoice) ?>" target="_blank" class="btn btn-default btn-sm mb-1  float-right ml-1"><i class="fa fa-print"></i> Cetak</a>
-              <?php } ?>
-                <a href="<?= base_url('/admin/invoice') ?>" class="btn btn-primary mb-1 btn-sm  float-right"><i class="fa fa-arrow-left"></i> Kembali</a>
               </div>
             </div>
             <br>
@@ -99,7 +90,7 @@
           <div class="table-responsive">
             <table class="table mt-3">
               <tr>
-                <th style="width:50%">Subtotal:</th>
+                <th style="width:50%">Subtotal</th>
                 <td>Rp<?= number_format($subtotal); ?></td>
               </tr>
               <tr>
@@ -113,9 +104,15 @@
             </table>
           </div>
         </div>
-        <!-- /.col -->
-          </div>
-          </div>
         </div>
     </section><br>
-<?= $this->endSection(); ?>
+
+</div>
+
+<!-- Cetak -->
+<script type="text/javascript">
+  print()
+</script>
+
+</body>
+</html>
