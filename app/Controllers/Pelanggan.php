@@ -214,12 +214,26 @@ class Pelanggan extends BaseController
 //---------------------------------- Transaksi --------------------------------------------------
         public function semuaTransaksi()
         {
+            $id_invoice = $this->request->getVar('idInvoice');
+            // dd($id_invoice);
             $data = [
                 'title'         => 'Transaksi',
                 'cart'          => \Config\Services::cart(),
                 'getInvoice'    => $this->M_invoice->ambilIdPembeli(session()->get('id_pelanggan'))->getResultArray(),
                 'cekTransaksi'  => $this->M_invoice->ambilIdPembeli(session()->get('id_pelanggan'))->getRow()
             ];
+
             return view('/pelanggan/v_transaksi', $data);
+        }
+
+        public function print($id)
+        {
+            $data = [
+                'title'     => 'Cetak',
+                'cart'      => \Config\Services::cart(),
+                'Invoice'   => $this->M_invoice->ambilData($id)->getRowArray(),
+                'Tblanja'   => $this->M_pembelian->ambilIdPembelian($id)->getResultArray()
+            ];
+            return view('/pelanggan/v_cetak', $data);
         }
     }

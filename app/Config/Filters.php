@@ -36,7 +36,8 @@ class Filters extends BaseConfig
 			'filterAdmin'	=> [
 				'except' => [
 					'admin', 'admin/*',
-					'pelanggan', 'pelanggan/*'
+					'pelanggan', 'pelanggan/*',
+					'pdf', 'pdf/*'
 					]
 				],
 			'filterPelanggan'	=> [

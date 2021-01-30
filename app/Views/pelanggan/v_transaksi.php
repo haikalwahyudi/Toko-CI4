@@ -31,13 +31,21 @@
                 <?php foreach ($getInvoice as $Invoice) {?>
                 <div class="card">
                     <div class="card-body">
+                        <input type="hidden" name="idInvoice" value="<?= $Invoice['id_invoice']; ?>">
                         <div class="row">
                             <div class="col-md-4 text-bold">
                                 Nomor Invoice
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 <?= $Invoice['id_invoice'] ?>
-                            </div>    
+                            </div>
+                            <?php
+                            if($Invoice['aksi'] == true){
+                            ?>
+                            <div class="col-md-2">
+                                <a href="<?= base_url('/pelanggan/print/'.$Invoice['id_invoice']) ?>" class="float-right text-dark" target="_blank"><i class="fa fa-print"></i> Cetak</a>
+                            </div>
+                        <?php } ?>
                         </div>
                         <div class="row">
                             <div class="col-md-4 text-bold">
@@ -62,9 +70,22 @@
                                     <th colspan="2">Toko Hikmah Masbagik</th>
                                 </tr>
                                 <tr>
+                                    <?php
+                                    $db = \Config\Database::connect();
+                                    $total =0;
+                                    $data = $db->table('pembelian')
+                                        ->join('ongkir','ongkir.id_ongkir = pembelian.id_ongkir')
+                                        ->getwhere(['id_invoice' => $Invoice['id_invoice']])->getResultArray();
+                                        foreach ($data as $value) {
+                                           $subtotal = $value['tarif'] + $value['total_pembelian'];
+                                           $total += $subtotal;
+                                       }
+
+                                    ?>
                                     <th>Total Belanja</th>
-                                    <td>Rp. 20.000</td>
+                                    <td>Rp<?= number_format($total) ?></td>
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -81,7 +102,7 @@
             </div>
             <?php } ?>
             </div>
-
+            
         </div>
         
     </div><!-- Container End -->

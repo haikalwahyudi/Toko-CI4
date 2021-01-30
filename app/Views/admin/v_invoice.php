@@ -20,6 +20,9 @@
     <!-- Main content -->
     <section class="content">
         <div class="card">
+          <div class="card-header">
+            <a href="<?= base_url('/pdf/cetakPdf'); ?>" target="_balnk" class="btn btn-primary"><i class="fa fa-file"></i> Cetak ke PDF</a>
+          </div>
           <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                 <thead>
