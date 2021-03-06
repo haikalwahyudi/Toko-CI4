@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2021 at 11:47 AM
+-- Generation Time: Mar 06, 2021 at 02:32 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -32,16 +32,20 @@ CREATE TABLE `admin` (
   `id_admin` int(11) NOT NULL,
   `nama_admin` varchar(50) NOT NULL,
   `email_admin` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `level` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id_admin`, `nama_admin`, `email_admin`, `password`) VALUES
-(13, 'Haikal Wahyudi', 'haikal@gmail.com', '$2y$10$Gvs6F/0FrTyxC8wliOQDaO7DFH6f/U/VYyXyr2QWppz.oHSQ.oOo.'),
-(14, 'Indra Bakti Maulana', 'indra@gmail.com', '$2y$10$EvYkePLET4AzB8HD/ecuj.esyj25T7Z08cClKqLnZT71nh9ttD6/O');
+INSERT INTO `admin` (`id_admin`, `nama_admin`, `email_admin`, `password`, `level`) VALUES
+(13, 'Haikal Wahyudi', 'haikal@gmail.com', '$2y$10$Gvs6F/0FrTyxC8wliOQDaO7DFH6f/U/VYyXyr2QWppz.oHSQ.oOo.', 'admin'),
+(14, 'Indra Bakti Maulana', 'indra@gmail.com', '$2y$10$EvYkePLET4AzB8HD/ecuj.esyj25T7Z08cClKqLnZT71nh9ttD6/O', 'admin'),
+(19, 'uang', 'udang@gmail.com', '$2y$10$x2ehDUqObRPblSgHaNdSG.4P2fvk3hFQMiWPFPE1oogEkmHSTGB6C', 'admin'),
+(20, 'Mutia Rahmi Laeli', 'mutia@gmial.com', '$2y$10$UGEMuLzJCP5heL/l1.pMVu8DSFlD77vie0PyY8FrbzEjXh7wuLUjC', 'admin'),
+(21, 'Admin', 'admin@gmail.com', '$2y$10$bM1//ZrPm28ePjGwor/eTutcVuEuIKRmo/zwF0kcNLCRyNInmox6W', 'admin');
 
 -- --------------------------------------------------------
 
@@ -65,10 +69,10 @@ CREATE TABLE `invoice` (
 --
 
 INSERT INTO `invoice` (`id_invoice`, `id_pembeli`, `nama_pem`, `telpon`, `tgl_beli`, `batas_bayar`, `alamat`, `aksi`) VALUES
-(38, 11, 'Mutia Rahmi Laely', 2147483647, '2021-01-24 22:11:03', '2021-01-26 22:11:03', 'Masbgik Timur', 1),
-(39, 11, 'Mutia', 123489098, '2021-01-24 22:13:38', '2021-01-26 22:13:38', 'Selong Pendopo', 0),
-(40, 12, 'Hakizil Waridi', 123489098, '2021-01-24 22:15:46', '2021-01-26 22:15:46', 'Paok Motong', 1),
-(41, 12, 'Hakizil', 2147483647, '2021-01-24 22:16:31', '2021-01-26 22:16:31', 'Rempung', 0);
+(43, 14, 'Mutia', 234234, '2021-01-27 03:33:58', '2021-01-29 03:33:58', 'werwer', 1),
+(44, 14, 'ertr', 345345, '2021-01-28 02:13:06', '2021-01-30 02:13:06', 'etert', 1),
+(45, 14, 'Udang', 1234566, '2021-01-28 10:20:50', '2021-01-30 10:20:50', 'qwuytrdfsdf', 1),
+(47, 14, 'Mutia Rahmi Laely', 12356788, '2021-01-29 23:50:30', '2021-01-31 23:50:30', 'qwertyutr', 0);
 
 -- --------------------------------------------------------
 
@@ -127,16 +131,18 @@ CREATE TABLE `pelanggan` (
   `nama_pelanggan` varchar(50) NOT NULL,
   `email_pelanggan` varchar(50) NOT NULL,
   `password_pelanggan` varchar(255) NOT NULL,
-  `telpon_pelanggan` varchar(20) NOT NULL
+  `telpon_pelanggan` varchar(20) NOT NULL,
+  `level` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pelanggan`
 --
 
-INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `email_pelanggan`, `password_pelanggan`, `telpon_pelanggan`) VALUES
-(11, 'Mutia Rahmi Leali', 'mutia@gmial.com', '$2y$10$UkHej6fbWt25I05h9QPowu.qxpDKaGHZUWFGQN7pC0MlGGOQGJvqS', '12345678987'),
-(12, 'Hakizil Waridi', 'hakizil@gmial.com', '$2y$10$GGH9OqJvZgSHoQXRUiawOOlEpCFtL8na6LYjJlGji3jPfCXvnBAa2', '123456789098');
+INSERT INTO `pelanggan` (`id_pelanggan`, `nama_pelanggan`, `email_pelanggan`, `password_pelanggan`, `telpon_pelanggan`, `level`) VALUES
+(12, 'Hakizil Waridi', 'hakizil@gmial.com', '$2y$10$GGH9OqJvZgSHoQXRUiawOOlEpCFtL8na6LYjJlGji3jPfCXvnBAa2', '123456789098', 'pelanggan'),
+(14, 'Haikal Wahyudi', 'haikal@gmial.com', 'haikal', '324234', 'pelanggan'),
+(15, 'kk', 'kk@gmail.com', '$2y$10$HQujMAs/ZnH/SyX0/z3TYO5ILNJp8VxGYz.1Ch.grjTscbIWx6hia', '12389', 'pelanggan');
 
 -- --------------------------------------------------------
 
@@ -160,15 +166,21 @@ CREATE TABLE `pembelian` (
 --
 
 INSERT INTO `pembelian` (`id_pembelian`, `id_invoice`, `id_produk`, `tgl_pembelian`, `harga`, `jumlah`, `id_ongkir`, `total_pembelian`) VALUES
-(70, 38, 65, '2021-01-24', 490000, 1, 3, 490000),
-(71, 38, 60, '2021-01-24', 4530000, 1, 3, 4530000),
-(72, 38, 46, '2021-01-24', 300000, 1, 3, 300000),
-(73, 38, 49, '2021-01-24', 95000, 2, 3, 190000),
-(74, 39, 65, '2021-01-24', 490000, 1, 1, 490000),
-(75, 39, 58, '2021-01-24', 456000, 1, 1, 456000),
-(76, 40, 57, '2021-01-24', 151000, 1, 2, 151000),
-(77, 40, 52, '2021-01-24', 80000, 1, 2, 80000),
-(78, 41, 50, '2021-01-24', 675000, 1, 4, 675000);
+(83, 43, 63, '2021-01-27', 4530000, 2, 1, 9060000),
+(84, 43, 52, '2021-01-27', 80000, 2, 1, 160000),
+(85, 44, 63, '2021-01-28', 4530000, 1, 3, 4530000),
+(86, 45, 54, '2021-01-28', 82000, 1, 1, 82000),
+(87, 45, 50, '2021-01-28', 675000, 1, 1, 675000),
+(88, 45, 64, '2021-01-28', 399000, 1, 1, 399000),
+(89, 45, 49, '2021-01-28', 95000, 1, 1, 95000),
+(90, 45, 60, '2021-01-28', 4530000, 1, 1, 4530000),
+(93, 47, 64, '2021-01-29', 399000, 1, 4, 399000),
+(94, 999, 60, '2021-01-29', 4530000, 1, 2, 4530000),
+(95, 2021, 59, '2021-01-29', 390000, 1, 4, 390000),
+(96, 2022, 55, '2021-01-29', 345000, 1, 2, 345000),
+(97, 2023, 64, '2021-01-29', 399000, 1, 9, 399000),
+(98, 2024, 50, '2021-01-29', 675000, 1, 4, 675000),
+(100, 2025, 54, '2021-01-30', 82000, 1, 4, 82000);
 
 -- --------------------------------------------------------
 
@@ -257,13 +269,13 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_admin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_invoice` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `kategori`
@@ -281,13 +293,13 @@ ALTER TABLE `ongkir`
 -- AUTO_INCREMENT for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
-  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_pelanggan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `pembelian`
 --
 ALTER TABLE `pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `produk`

@@ -90,7 +90,7 @@
           <!-- /.col -->
           <div class="col-12">
             <button type="submit" class="btn btn-primary">Daftar</button>
-            <a href="/login/loginUser" class="btn btn-warning text-white">Kembali</a>
+            <a href="/login" class="btn btn-warning text-white">Kembali</a>
           </div>
           <!-- /.col -->
         </div>
